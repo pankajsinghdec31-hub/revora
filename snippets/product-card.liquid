@@ -1,77 +1,97 @@
 {%- comment -%}
-Reusable Product Card Snippet (Dynamic Shopify product)
+  Atelier Reusable Luxury Product Card Snippet
 {%- endcomment -%}
 
 {%- assign featured_variant = product.selected_or_first_available_variant -%}
 
-<div class="product-card" data-product-id="{{ product.id }}">
-  <div class="product-image-container">
-    <a href="{{ product.url }}" class="product-link">
+<div class="product-card stagger-item" data-product-id="{{ product.id }}">
+  <div class="product-img-wrap">
+    {%- if product.compare_at_price > product.price -%}
+      <span class="product-badge sale">Sale</span>
+    {%- elsif product.tags contains 'Best Seller' or product.tags contains 'best-seller' or forloop.index == 1 or forloop.index == 2 -%}
+      <span class="product-badge">Best Seller</span>
+    {%- endif -%}
+    
+    <button class="product-wishlist-btn wishlist-toggle-btn" data-id="{{ product.id }}" aria-label="Add to wishlist">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    </button>
+    
+    <a href="{{ product.url }}">
       <img src="{{ product.featured_image | image_url: width: 600 }}" 
-           alt="{{ product.title }}" 
-           class="product-image primary-img"
+           class="product-img" 
+           alt="{{ product.title }}"
            loading="lazy">
-      {%- if product.images[1] != blank -%}
-        <img src="{{ product.images[1] | image_url: width: 600 }}" 
-             alt="{{ product.title }}" 
-             class="product-image hover-img"
-             loading="lazy">
-      {%- endif -%}
     </a>
+    
+    <!-- Quick View overlay button -->
+    <div class="product-quick-view-btn" onclick="window.location.href='{{ product.url }}'">Quick View</div>
   </div>
 
-  <div class="product-details">
-    <!-- Reviews Star Badge -->
-    <div class="product-rating">
-      <span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="rating-count">(4.9)</span>
-    </div>
-
-    <!-- Product Title -->
-    <h3 class="product-title">
-      <a href="{{ product.url }}">{{ product.title }}</a>
-    </h3>
-
-    <!-- Dynamic Color Swatches beneath title -->
-    {%- for option in product.options_with_values -%}
-      {%- if option.name == 'Color' or option.name == 'Colour' -%}
-        <div class="product-color-swatches">
+  <div class="product-info">
+    <!-- Color thumbnail swatches (under image) -->
+    <div class="product-card-colors">
+      {%- for option in product.options_with_values -%}
+        {%- if option.name == 'Color' or option.name == 'Colour' -%}
           {%- for value in option.values -%}
-            <button class="color-swatch {% if forloop.first %}active{% endif %}" 
-                    data-value="{{ value }}"
+            {%- assign variant_for_value = product.variants | where: 'option1', value | first -%}
+            {%- if variant_for_value == blank -%}
+              {%- assign variant_for_value = product.variants | where: 'option2', value | first -%}
+            {%- endif -%}
+            {%- if variant_for_value == blank -%}
+              {%- assign variant_for_value = product.variants | where: 'option3', value | first -%}
+            {%- endif -%}
+            <span class="product-swatch {% if forloop.first %}active{% endif %}" 
+                  data-color="{{ value }}" 
+                  data-index="{{ forloop.index0 }}"
+                  {% if variant_for_value.image %}
+                    style="background-image: url('{{ variant_for_value.image | image_url: width: 50 }}');"
+                  {% else %}
                     style="background-color: {{ value | downcase }};"
-                    aria-label="Color Swatch {{ value }}">
-            </button>
+                  {% endif %}
+                  title="{{ value }}"></span>
           {%- endfor -%}
-        </div>
-      {%- endif -%-}
-    {%- endfor -%}
-
-    <!-- Pricing Row -->
-    <div class="product-price-row">
-      <span class="product-price">{{ featured_variant.price | money }}</span>
-      {%- if featured_variant.compare_at_price > featured_variant.price -%}
-        <span class="product-compare-price">{{ featured_variant.compare_at_price | money }}</span>
-      {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
     </div>
 
-    <!-- Dynamic Quick Add button aligned at card bottom -->
-    <div class="product-atc-wrap">
-      {%- form 'product', product, class: 'quick-add-form' -%}
-        <input type="hidden" name="id" value="{{ featured_variant.id }}">
-        <button type="submit" 
-                class="luxury-btn btn-secondary quick-add-btn" 
-                {% unless featured_variant.available %}disabled{% endunless %}>
-          <span class="btn-text">
-            {%- if featured_variant.available -%}
-              Quick Add
-            {%- else -%}
-              Sold Out
-            {%- endif -%}
-          </span>
-          <span class="btn-hover-effect"></span>
-        </button>
-      {%- endform -%}
+    <div class="product-card-details">
+      <h3 class="product-card-title">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </h3>
+      <p class="product-card-benefit">
+        {{ product.description | strip_html | truncatewords: 6 | default: "Seamless wire-free contour, weightless support" }}
+      </p>
+      
+      <div class="product-rating-price-row">
+        <div class="product-rating">
+          <div class="rating-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <span class="rating-count">(4.9)</span>
+        </div>
+        <div class="product-card-price-wrap">
+          <span class="product-card-price">{{ featured_variant.price | money }}</span>
+          {%- if featured_variant.compare_at_price > featured_variant.price -%}
+            <span class="product-card-price-old">{{ featured_variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes selector wrap -->
+    <div class="product-sizes-selector-wrap">
+      <div class="product-sizes-selector">
+        {%- for option in product.options_with_values -%}
+          {%- if option.name == 'Size' or option.name == 'Sizes' -%}
+            {%- for value in option.values limit: 5 -%}
+              <button class="size-select-btn quick-add-size" data-id="{{ product.id }}" data-size="{{ value }}">{{ value }}</button>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 </div>

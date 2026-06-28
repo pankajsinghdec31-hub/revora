@@ -1,45 +1,60 @@
 {%- comment -%}
-Brand Storytelling Parallax Section
+  Brand Storytelling Section
 {%- endcomment -%}
 
-<section class="brand-story-section" id="brand-story" data-section-id="{{ section.id }}">
-  <div class="container">
+<section class="section-padding brand-story-section" id="brand-story" data-section-id="{{ section.id }}">
+  <div class="container brand-story-container">
     <div class="brand-story-grid">
-      <!-- Media Columns -->
-      <div class="story-media-column">
-        <div class="story-image-wrap img-left">
-          {%- if section.settings.image_left != blank -%}
-            <img src="{{ section.settings.image_left | image_url: width: 800 }}" 
-                 alt="Revora Heritage" 
-                 class="story-img parallax-img-target">
+      <!-- Left Column: Overlapping Images Collage -->
+      <div class="brand-story-images-column">
+        <div class="primary-image-wrap">
+          {%- if section.settings.image_primary != blank -%}
+            <img src="{{ section.settings.image_primary | image_url: width: 800 }}" 
+                 alt="{{ section.settings.title | strip_html }}" 
+                 class="story-img-primary">
           {%- else -%}
-            <div style="background-color: var(--caramel); opacity: 0.15; height: 400px; width: 100%;"></div>
+            <div style="background-color: var(--caramel); opacity: 0.15; height: 500px; width: 100%;"></div>
           {%- endif -%}
         </div>
-        <div class="story-image-wrap img-right">
-          {%- if section.settings.image_right != blank -%}
-            <img src="{{ section.settings.image_right | image_url: width: 600 }}" 
-                 alt="Revora Craft" 
-                 class="story-img parallax-img-target">
+        <div class="secondary-image-wrap">
+          {%- if section.settings.image_secondary != blank -%}
+            <img src="{{ section.settings.image_secondary | image_url: width: 600 }}" 
+                 alt="{{ section.settings.title | strip_html }}" 
+                 class="story-img-secondary">
           {%- else -%}
-            <div style="background-color: var(--caramel); opacity: 0.25; height: 300px; width: 100%;"></div>
+            <div style="background-color: var(--caramel); opacity: 0.25; height: 350px; width: 100%;"></div>
           {%- endif -%}
         </div>
       </div>
 
-      <!-- Narrative Column -->
-      <div class="story-narrative-column">
-        <div class="narrative-inner">
-          <span class="narrative-tag">{{ section.settings.subtitle }}</span>
-          <h3 class="narrative-heading">{{ section.settings.heading }}</h3>
-          <div class="narrative-body">{{ section.settings.content }}</div>
-          
-          {%- if section.settings.signature_text != blank -%}
-            <div class="story-signature">
-              <span class="cursive-sig">{{ section.settings.signature_text }}</span>
-            </div>
+      <!-- Right Column: Narrative Content -->
+      <div class="brand-story-content-column">
+        <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+        <h2 class="section-title">{{ section.settings.title }}</h2>
+
+        <div class="brand-story-text-wrap">
+          {%- if section.settings.quote != blank -%}
+            <p class="brand-story-quote">
+              "{{ section.settings.quote }}"
+            </p>
+          {%- endif -%}
+          {%- if section.settings.body1 != blank -%}
+            <p class="brand-story-body">
+              {{ section.settings.body1 }}
+            </p>
+          {%- endif -%}
+          {%- if section.settings.body2 != blank -%}
+            <p class="brand-story-body">
+              {{ section.settings.body2 }}
+            </p>
           {%- endif -%}
         </div>
+
+        {%- if section.settings.signature != blank -%}
+          <div class="brand-story-signature">
+            <span class="signature-name">{{ section.settings.signature }}</span>
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -53,35 +68,47 @@ Brand Storytelling Parallax Section
       "type": "text",
       "id": "subtitle",
       "label": "Heritage Subtitle",
-      "default": "WEAVING A LEGACY"
+      "default": "Wear Nothing But Yourself"
     },
     {
       "type": "text",
-      "id": "heading",
+      "id": "title",
       "label": "Story Title",
-      "default": "Hand-Tailored Lingerie Made to Breath"
+      "default": "The Revora Vision"
     },
     {
-      "type": "richtext",
-      "id": "content",
-      "label": "Story Paragraphs",
-      "default": "<p>Born from a desire to reconcile the sensory aesthetics of luxury lace with everyday utility, Revora crafts undergarments that feel like silk water against the skin.</p>"
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote Narrative",
+      "default": "We set out to strip away the noise. Underwear should not be a flashy billboard; it should be a quiet sanctuary of touch."
     },
     {
-      "type": "image_picker",
-      "id": "image_left",
-      "label": "Large Left Image"
+      "type": "textarea",
+      "id": "body1",
+      "label": "Story Paragraph 1",
+      "default": "By choosing organic beechwood modal fibers and eliminating irritating hardware or tight seams, we created garments that adapt seamlessly to your body. We don't frame you — we set you free."
     },
     {
-      "type": "image_picker",
-      "id": "image_right",
-      "label": "Small Right Overlap Image"
+      "type": "textarea",
+      "id": "body2",
+      "label": "Story Paragraph 2",
+      "default": "Every piece is tailored with invisible micro-stitches and soft luxury elasticity that moves with you, bringing weightless comfort to the center of your daily ritual."
     },
     {
       "type": "text",
-      "id": "signature_text",
-      "label": "Atelier Signature Signature Text",
-      "default": "Atelier Revora"
+      "id": "signature",
+      "label": "Atelier Author Signature",
+      "default": "Aditya Tayal"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_primary",
+      "label": "Primary Large Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_secondary",
+      "label": "Secondary Overlap Image"
     }
   ],
   "presets": [

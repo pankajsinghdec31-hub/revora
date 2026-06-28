@@ -1,107 +1,101 @@
 {%- comment -%}
-Hanging Glassmorphic Header Section
+  Atelier Luxury Header Section
 {%- endcomment -%}
 
-<header class="hanging-header-container" data-section-id="{{ section.id }}" data-section-type="header">
-  {%- if section.settings.show_announcement -%}
-    <!-- Announcement Bar -->
-    <div class="announcement-bar" id="announcement-bar">
-      <div class="announcement-slider">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'announcement' -%}
-            <div class="announcement-item {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
-              {{ block.settings.text }}
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    </div>
-  {%- endif -%}
-
-  <div class="header-inner">
-    <div class="container-fluid">
-      <div class="header-wrap">
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <!-- Navigation Left Column -->
-        <nav class="desktop-nav nav-left">
-          {%- for link in linklists[section.settings.menu_left].links -%}
-            <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
-          {%- endfor -%}
-        </nav>
-
-        <!-- Centered Logo -->
-        <div class="logo-wrap">
-          <a href="/" class="logo-link">
-            {%- if section.settings.logo != blank -%}
-              <img src="{{ section.settings.logo | image_url: width: 300 }}" 
-                   alt="{{ shop.name }}" 
-                   style="max-width: {{ section.settings.logo_width }}px;"
-                   class="logo-image">
-            {%- else -%}
-              <span class="logo-text">{{ shop.name }}</span>
-            {%- endif -%}
-          </a>
-        </div>
-
-        <!-- Navigation Right Column -->
-        <nav class="desktop-nav nav-right">
-          {%- for link in linklists[section.settings.menu_right].links -%}
-            <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
-          {%- endfor -%}
-        </nav>
-
-        <!-- Utility Icons (Search, Cart Drawer Link) -->
-        <div class="header-utilities">
-          <button class="util-btn search-trigger" id="search-trigger" aria-label="Search">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
-          
-          <a href="/account" class="util-btn account-link" aria-label="Account">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </a>
-
-          <button class="util-btn cart-trigger" id="cart-trigger" aria-label="Open Cart">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-            <span class="cart-count-badge" id="cart-badge">{{ cart.item_count }}</span>
-          </button>
-        </div>
-      </div>
+{%- if section.settings.show_announcement -%}
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-slider">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'announcement' -%}
+          <div class="announcement-item {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+            {{ block.settings.text }}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
+{%- endif -%}
 
-  <!-- Mobile Navigation Drawer Overlay -->
-  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
-    <div class="drawer-header">
-      <span class="drawer-title">Navigation</span>
-      <button class="drawer-close" id="drawer-close" aria-label="Close Menu">&times;</button>
-    </div>
-    <div class="drawer-body">
-      <nav class="mobile-links">
-        {%- assign full_menu = linklists[section.settings.menu_left].links | concat: linklists[section.settings.menu_right].links -%}
-        {%- for link in full_menu -%}
-          <a href="{{ link.url }}" class="mobile-link">{{ link.title }}</a>
+<!-- Header Navigation -->
+<header id="site-header">
+  <div class="container header-container">
+    <!-- Logo -->
+    <a href="/" class="logo" id="header-logo-trigger">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 300 }}" 
+             alt="{{ shop.name }}" 
+             style="max-width: {{ section.settings.logo_width }}px;"
+             class="logo-image">
+      {%- else -%}
+        <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="45" stroke="#C8AD7C" stroke-width="2"/>
+          <line x1="50" y1="30" x2="50" y2="70" stroke="#C8AD7C" stroke-width="2"/>
+          <circle cx="50" cy="27" r="3" fill="#C8AD7C"/>
+          <ellipse cx="37" cy="38" rx="14" ry="5" transform="rotate(-10 37 38)" stroke="#C8AD7C" stroke-width="2"/>
+          <ellipse cx="63" cy="38" rx="14" ry="5" transform="rotate(10 63 38)" stroke="#C8AD7C" stroke-width="2"/>
+          <ellipse cx="38" cy="48" rx="11" ry="4" transform="rotate(5 38 48)" stroke="#C8AD7C" stroke-width="2"/>
+          <ellipse cx="62" cy="48" rx="11" ry="4" transform="rotate(-5 62 48)" stroke="#C8AD7C" stroke-width="2"/>
+          <circle cx="50" cy="42" r="2" fill="#C8AD7C"/>
+          <circle cx="50" cy="54" r="1.8" fill="#C8AD7C"/>
+          <circle cx="50" cy="72" r="1.5" fill="#C8AD7C"/>
+        </svg>
+        <span class="logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <!-- Desktop Nav Link Menu -->
+    <nav class="desktop-nav">
+      <ul class="nav-links">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <li class="nav-item">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
         {%- endfor -%}
-      </nav>
+      </ul>
+    </nav>
+
+    <!-- Action Buttons -->
+    <div class="header-actions">
+      <!-- Search Trigger -->
+      <button class="action-btn" id="search-trigger" aria-label="Search site">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </button>
+      
+      <!-- Wishlist Drawer Trigger -->
+      <button class="action-btn" id="wishlist-trigger" aria-label="Wishlist">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <span class="badge-count" id="wishlist-badge">0</span>
+      </button>
+      
+      <!-- Cart Drawer Trigger -->
+      <button class="action-btn" id="cart-trigger" aria-label="Cart">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <span class="badge-count" id="cart-badge">{{ cart.item_count }}</span>
+      </button>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="action-btn menu-toggle" id="mobile-menu-trigger" aria-label="Toggle menu">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
   </div>
-  <div class="drawer-backdrop" id="drawer-backdrop"></div>
 </header>
+
+<!-- Mobile Navigation Menu Drawer -->
+<div class="drawer drawer-left" id="mobile-menu-drawer">
+  <div class="drawer-header">
+    <h3 class="drawer-title">Menu</h3>
+    <button class="drawer-close" id="mobile-menu-close">&times;</button>
+  </div>
+  <div class="drawer-content" style="padding-top:3rem;">
+    <ul style="list-style:none; display:flex; flex-direction:column; gap:2.5rem; font-size:1.8rem; font-family:var(--font-serif)">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <li><a href="{{ link.url }}" class="mobile-nav-link">{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
 
 {% schema %}
 {
@@ -124,14 +118,9 @@ Hanging Glassmorphic Header Section
     },
     {
       "type": "link_list",
-      "id": "menu_left",
-      "label": "Left Navigation Menu",
+      "id": "menu",
+      "label": "Navigation Menu",
       "default": "main-menu"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_right",
-      "label": "Right Navigation Menu"
     },
     {
       "type": "header",

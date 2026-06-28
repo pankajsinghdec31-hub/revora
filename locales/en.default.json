@@ -1,0 +1,13 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search...",
+      "submit": "Submit"
+    },
+    "cart": {
+      "title": "Your Cart",
+      "checkout": "Checkout",
+      "empty": "Your cart is currently empty."
+    }
+  }
+}

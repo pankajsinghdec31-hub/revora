@@ -301,7 +301,16 @@ section {
   z-index: 1001;
   border-bottom: 1px solid rgba(200, 173, 124, 0.15);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  transition: transform 0.6s var(--ease-luxury), opacity 0.6s var(--ease-luxury), all 0.3s ease;
+}
+
+body.hero-active .announcement-bar {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .announcement-slider {
@@ -403,6 +412,14 @@ header.scrolled {
   background: rgba(242, 232, 214, 0.85);
   border-color: rgba(74, 52, 43, 0.12);
   box-shadow: 0 12px 40px rgba(74, 52, 43, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+body.hero-active header {
+  top: 20px;
+}
+
+body.hero-active header.scrolled {
+  top: 16px;
 }
 
 header .header-container {
@@ -559,6 +576,14 @@ header.scrolled .logo-text {
     top: calc(var(--announcement-height) + 8px);
     height: 50px;
     width: calc(100% - 16px);
+  }
+
+  body.hero-active header {
+    top: 20px;
+  }
+
+  body.hero-active header.scrolled {
+    top: 12px;
   }
 
   header .header-container,
@@ -2143,24 +2168,41 @@ header.scrolled .logo-text {
    ========================================================================== */
 
 .why-choose-us-section {
-  background: radial-gradient(circle at center, #2e1a14 0%, #160d0b 100%);
+  background:
+    radial-gradient(ellipse at 8% 40%, rgba(200, 173, 124, 0.18) 0%, transparent 48%),
+    radial-gradient(ellipse at 92% 15%, rgba(168, 139, 89, 0.13) 0%, transparent 42%),
+    radial-gradient(ellipse at 50% 95%, rgba(200, 173, 124, 0.10) 0%, transparent 55%),
+    linear-gradient(155deg, #f3ece0 0%, #f7f2ea 30%, #f9f5ee 55%, #ede5d5 85%, #e8ddc8 100%);
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(200, 173, 124, 0.1);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border-top: 1px solid rgba(200, 173, 124, 0.18);
+  border-bottom: 1px solid rgba(74, 52, 43, 0.07);
 }
 
+/* Decorative golden shimmer line at the very top of the section */
+.why-choose-us-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(200, 173, 124, 0.55) 35%, rgba(200, 173, 124, 0.85) 50%, rgba(200, 173, 124, 0.55) 65%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Soft ambient light glow on upper-right */
 .why-choose-us-section::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(200, 173, 124, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
-  z-index: 0;
+  top: -10%;
+  right: -5%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(200, 173, 124, 0.07) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
 }
 
 .why-choose-us-section .container {
@@ -2168,10 +2210,40 @@ header.scrolled .logo-text {
   z-index: 1;
 }
 
+/* Match section-title-wrap layout to section 2 */
+.why-choose-us-section .section-title-wrap {
+  text-align: center;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Match heading typography to section 2 */
 .why-choose-us-section .section-title {
-  color: var(--white);
-  font-weight: 700;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--espresso);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .why-choose-us-section .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+.why-choose-us-section .section-subtitle {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--caramel);
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .editorial-grid {
@@ -2230,15 +2302,13 @@ header.scrolled .logo-text {
 
 .editorial-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  padding: 3.5rem 2.2rem;
+  background: var(--white);
+  border: 1px solid rgba(74, 52, 43, 0.06);
+  border-radius: 8px;
+  padding: 2.8rem 2.4rem;
   text-align: center;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 16px rgba(74, 52, 43, 0.04), 0 1px 4px rgba(74, 52, 43, 0.03);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -2252,7 +2322,7 @@ header.scrolled .logo-text {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(200, 173, 124, 0.15) 0%, rgba(200, 173, 124, 0) 50%, rgba(200, 173, 124, 0) 100%);
+  background: linear-gradient(135deg, rgba(200, 173, 124, 0.1) 0%, rgba(200, 173, 124, 0) 50%, rgba(200, 173, 124, 0) 100%);
   z-index: 0;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -2260,10 +2330,10 @@ header.scrolled .logo-text {
 }
 
 .editorial-card:hover {
-  transform: translateY(-12px) scale(1.02);
+  transform: translateY(-5px);
   border-color: rgba(200, 173, 124, 0.35);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 25px rgba(200, 173, 124, 0.1);
+  background: var(--white);
+  box-shadow: 0 15px 35px rgba(74, 52, 43, 0.08);
 }
 
 .editorial-card:hover::before {
@@ -2287,11 +2357,11 @@ header.scrolled .logo-text {
 }
 
 .editorial-card:hover .editorial-icon-wrap {
-  background: var(--caramel);
-  color: var(--espresso-deep);
+  background: var(--espresso-dark);
+  color: var(--caramel-light);
   transform: translateY(-8px) rotate(8deg);
-  box-shadow: 0 10px 25px rgba(200, 173, 124, 0.3);
-  border-color: var(--caramel);
+  box-shadow: 0 10px 25px rgba(74, 52, 43, 0.15);
+  border-color: var(--espresso-dark);
 }
 
 .editorial-icon-wrap svg {
@@ -2307,10 +2377,10 @@ header.scrolled .logo-text {
 }
 
 .editorial-stat-num {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: 3.2rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--caramel-light) 0%, var(--caramel) 50%, var(--caramel-dark) 100%);
+  background: linear-gradient(135deg, var(--caramel-dark) 0%, var(--caramel) 50%, var(--caramel-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -2320,34 +2390,41 @@ header.scrolled .logo-text {
 }
 
 .editorial-card:hover .editorial-stat-num {
-  transform: scale(1.08);
-  filter: drop-shadow(0 4px 12px rgba(200, 173, 124, 0.35));
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(200, 173, 124, 0.25));
 }
 
 .editorial-card-title {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1.45rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--white);
-  margin-bottom: 1.2rem;
+  color: var(--espresso-dark);
+  margin-bottom: 1rem;
   position: relative;
   z-index: 1;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  width: 100%;
+  text-align: center;
 }
 
 .editorial-card-text {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.7;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: rgba(74, 52, 43, 0.68);
+  line-height: 1.65;
   position: relative;
   z-index: 1;
-  font-weight: 300;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 0.01em;
 }
 
 .editorial-card-text strong {
-  color: var(--caramel-light);
+  color: var(--espresso);
   font-weight: 600;
+  letter-spacing: 0;
 }
 
 /* Fabric Tech Interactive Showcase */
@@ -3634,6 +3711,28 @@ footer {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+/* Product Page Info Accordion overrides (making headings visible on light backgrounds) */
+.pdp-info .fabric-accordion-item {
+  border-bottom: 1px solid rgba(74, 52, 43, 0.08);
+}
+
+.pdp-info .fabric-accordion-title {
+  color: var(--espresso);
+  font-weight: 500;
+}
+
+.pdp-info .fabric-accordion-header:hover .fabric-accordion-title {
+  color: var(--caramel-dark);
+}
+
+.pdp-info .fabric-accordion-text {
+  color: var(--gray-dark);
+}
+
+.pdp-info .fabric-accordion-icon {
+  stroke: var(--caramel-dark);
 }
 
 /* Bundle offer box */
