@@ -1,0 +1,146 @@
+{%- comment -%}
+Pillars of Craftsmanship Values Section
+{%- endcomment -%}
+
+<section class="why-choose-us-section" id="values" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section-title-wrap text-center">
+      <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="stagger-wrap">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'pillar' -%}
+          <div class="stagger-item card-hover-effect" {{ block.shopify_attributes }}>
+            <div class="stagger-icon-wrap">
+              {%- case block.settings.icon -%}
+                {%- when 'needle' -%}
+                  <!-- Twist needle thread luxury icon -->
+                  <svg class="stagger-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="50" y1="10" x2="50" y2="90" stroke="var(--caramel)" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="50" cy="20" r="3" fill="var(--espresso-deep)"/>
+                    <path d="M45 45 C45 35, 55 35, 55 45 C55 55, 45 55, 45 65" stroke="var(--caramel)" stroke-width="2" fill="none"/>
+                  </svg>
+                {%- when 'butterfly' -%}
+                  <!-- Dragonfly style vector icon -->
+                  <svg class="stagger-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="50" y1="20" x2="50" y2="80" stroke="var(--caramel)" stroke-width="2" stroke-linecap="round"/>
+                    <ellipse cx="38" cy="35" rx="12" ry="4" transform="rotate(-15 38 35)" stroke="var(--caramel)" stroke-width="2"/>
+                    <ellipse cx="62" cy="35" rx="12" ry="4" transform="rotate(15 62 35)" stroke="var(--caramel)" stroke-width="2"/>
+                  </svg>
+                {%- when 'silk' -%}
+                  <!-- Soft silk fabric curves icon -->
+                  <svg class="stagger-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 35 C40 25, 60 45, 80 35 M20 50 C40 40, 60 60, 80 50" stroke="var(--caramel)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  </svg>
+                {%- else -%}
+                  <!-- Fit measurements grid rules icon -->
+                  <svg class="stagger-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="25" y="25" width="50" height="50" rx="4" stroke="var(--caramel)" stroke-width="2"/>
+                    <line x1="25" y1="50" x2="75" y2="50" stroke="var(--caramel)" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <line x1="50" y1="25" x2="50" y2="75" stroke="var(--caramel)" stroke-width="1.5" stroke-dasharray="4,4"/>
+                  </svg>
+              {%- endcase -%}
+            </div>
+            <h3 class="stagger-item-title">{{ block.settings.title }}</h3>
+            <p class="stagger-item-desc">{{ block.settings.description }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Atelier Value Pillars",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "The Art of Intimate Perfection"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "Premium Craftsmanship"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Luxury Vector Icon",
+          "options": [
+            {
+              "value": "needle",
+              "label": "Needle & Thread"
+            },
+            {
+              "value": "butterfly",
+              "label": "Atelier Dragonfly"
+            },
+            {
+              "value": "silk",
+              "label": "Silk Fabric Flow"
+            },
+            {
+              "value": "measure",
+              "label": "Couture Tailor Measure"
+            }
+          ],
+          "default": "needle"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Pillar Title",
+          "default": "Handcrafted Silk Patterns"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Pillar Description",
+          "default": "Stitched by master artisans using premium 100% natural Mulberry silk filaments to lay flat against skin."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Atelier Value Pillars",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "pillar",
+          "settings": {
+            "icon": "needle",
+            "title": "Flat-Lock Contour Stitches"
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "icon": "silk",
+            "title": "Mulberry Silk Filaments"
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "icon": "measure",
+            "title": "Sensory Fit Mapping"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

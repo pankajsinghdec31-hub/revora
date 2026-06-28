@@ -1,0 +1,117 @@
+{%- comment -%}
+Editorial Spotlight Section
+{%- endcomment -%}
+
+<section class="editorial-section" id="editorial" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section-title-wrap text-center">
+      <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="editorial-grid">
+      <!-- Media Left Column -->
+      <div class="editorial-media-col">
+        <div class="editorial-img-frame primary-frame">
+          {%- if section.settings.image_primary != blank -%}
+            <img src="{{ section.settings.image_primary | image_url: width: 800 }}" 
+                 alt="{{ section.settings.heading }}" 
+                 class="editorial-img">
+          {%- else -%}
+            <div style="background-color: var(--caramel); opacity: 0.15; height: 450px; width: 100%;"></div>
+          {%- endif -%}
+        </div>
+        <div class="editorial-img-frame secondary-frame">
+          {%- if section.settings.image_secondary != blank -%}
+            <img src="{{ section.settings.image_secondary | image_url: width: 500 }}" 
+                 alt="{{ section.settings.heading }}" 
+                 class="editorial-img">
+          {%- else -%}
+            <div style="background-color: var(--caramel); opacity: 0.25; height: 300px; width: 100%;"></div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Text Right Column -->
+      <div class="editorial-content-col">
+        <div class="editorial-text-wrap">
+          <span class="editorial-tag">{{ section.settings.tag }}</span>
+          <h3 class="editorial-heading">{{ section.settings.heading }}</h3>
+          <div class="editorial-desc">{{ section.settings.content }}</div>
+          
+          {%- if section.settings.cta_label != blank -%}
+            <a href="{{ section.settings.cta_link }}" class="luxury-btn btn-secondary">
+              <span class="btn-text">{{ section.settings.cta_label }}</span>
+              <span class="btn-hover-effect"></span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial Spotlight",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "Couture Design Notes"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "Atelier Stories"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_primary",
+      "label": "Primary Large Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_secondary",
+      "label": "Secondary Overlap Image"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Couture Tag",
+      "default": "THE COLLECTION 2026"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Editorial Title",
+      "default": "Whisper-Weight Comfort Redefined"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Editorial Paragraphs",
+      "default": "<p>Every silk fiber is individually combed and checked for thickness consistency before knitting, ensuring each Revora piece wears like an extension of your own skin.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button Label",
+      "default": "Read The Journal"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial Spotlight",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

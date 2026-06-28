@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags -%} &ndash; tagged "{{ current_tags | join: ', ' }}"{%- endif -%}
+      {%- if current_page != 1 -%} &ndash; Page {{ current_page }}{%- endif -%}
+      {%- unless page_title contains shop.name -%} &ndash; {{ shop.name }}{%- endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    <!-- Core CDNs loaded globally -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Global CSS settings dynamically mapped from customizer variables -->
+    <style>
+      :root {
+        --espresso-deep: {{ settings.color_primary | default: '#4A342B' }};
+        --espresso-dark: #35251F;
+        --caramel: {{ settings.color_accent | default: '#C8AD7C' }};
+        --beige: {{ settings.color_bg | default: '#F2E8D6' }};
+        --beige-light: #F9F5EE;
+        --white: {{ settings.color_white | default: '#FFFFFF' }};
+        --glass-bg: {{ settings.color_card_bg | default: 'rgba(255, 255, 255, 0.45)' }};
+        --glass-border: {{ settings.color_border | default: 'rgba(200, 173, 124, 0.25)' }};
+        --shadow-subtle: rgba(74, 52, 43, 0.05);
+        --font-serif: 'Outfit', serif;
+        --font-display: 'Outfit', sans-serif;
+        --font-sans: 'Outfit', sans-serif;
+      }
+    </style>
+
+    <!-- Theme assets -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body>
+
+    {%- if settings.enable_custom_cursor -%}
+      <!-- Custom Luxury Cursor -->
+      <div class="custom-cursor" id="custom-cursor"></div>
+      <div class="custom-cursor-follower" id="custom-follower">
+        <svg class="cursor-dragonfly" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="45" stroke="var(--caramel)" stroke-width="1.5"/>
+          <line x1="50" y1="30" x2="50" y2="70" stroke="var(--caramel)" stroke-width="1.5"/>
+          <circle cx="50" cy="27" r="2.5" fill="var(--caramel)"/>
+          <ellipse cx="37" cy="38" rx="14" ry="5" transform="rotate(-10 37 38)" stroke="var(--caramel)" stroke-width="1.5"/>
+          <ellipse cx="63" cy="38" rx="14" ry="5" transform="rotate(10 63 38)" stroke="var(--caramel)" stroke-width="1.5"/>
+          <ellipse cx="38" cy="48" rx="11" ry="4" transform="rotate(5 38 48)" stroke="var(--caramel)" stroke-width="1.5"/>
+          <ellipse cx="62" cy="48" rx="11" ry="4" transform="rotate(-5 62 48)" stroke="var(--caramel)" stroke-width="1.5"/>
+          <circle cx="50" cy="42" r="1.5" fill="var(--caramel)"/>
+          <circle cx="50" cy="54" r="1.3" fill="var(--caramel)"/>
+          <circle cx="50" cy="72" r="1" fill="var(--caramel)"/>
+        </svg>
+      </div>
+    {%- endif -%}
+
+    {% section 'header' %}
+
+    <main role="main" id="MainContent" class="focus-none" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    <!-- Theme assets -->
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'three-experience.js' | asset_url }}" defer></script>
+  </body>
+</html>

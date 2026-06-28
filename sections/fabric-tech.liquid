@@ -1,0 +1,128 @@
+{%- comment -%}
+Technical Fabric Accordion and Image Section
+{%- endcomment -%}
+
+<section class="fabric-tech-section" id="fabric-tech" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section-title-wrap text-center">
+      <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="fabric-tech-grid">
+      <!-- Accordions Left Column -->
+      <div class="fabric-accordions-col">
+        <div class="luxury-accordion-wrap">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'accordion' -%}
+              <div class="accordion-item {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+                <button class="accordion-header" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
+                  <span class="accordion-header-text">{{ block.settings.title }}</span>
+                  <span class="accordion-icon">
+                    <span class="line-v"></span>
+                    <span class="line-h"></span>
+                  </span>
+                </button>
+                <div class="accordion-collapse" style="{% if forloop.first %}max-height: none;{% else %}max-height: 0px;{% endif %}">
+                  <div class="accordion-body">
+                    <p>{{ block.settings.content }}</p>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Static Image Right Column -->
+      <div class="fabric-showcase-col">
+        <div class="fabric-showcase-card">
+          {%- if section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url: width: 800 }}" 
+                 alt="{{ section.settings.title }}" 
+                 class="fabric-showcase-img">
+          {%- else -%}
+            <div style="background-color: var(--caramel); opacity: 0.15; height: 500px; width: 100%; border-radius: 8px;"></div>
+          {%- endif -%}
+          <div class="fabric-card-overlay">
+            <span class="overlay-badge">Atelier Standard</span>
+            <h4 class="overlay-title">{{ section.settings.overlay_heading }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fabric & Technology",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "Comfort In Every Thread"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "Pure Tech Comfort"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Showcase Image"
+    },
+    {
+      "type": "text",
+      "id": "overlay_heading",
+      "label": "Image Card Overlay Label",
+      "default": "Mulberry Silk Filaments"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Item Header",
+          "default": "Elasticity and Support"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Item Body Content",
+          "default": "Features Japanese-engineered high-stretch elastomer bands that provide comfortable shape support without digging in."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fabric & Technology",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "Thermoclimatic Silk Comfort",
+            "content": "Mulberry silk filaments adapt to body heat, providing cooling ventilation during summer and warmth retention in winter."
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "Anti-Friction Sewing",
+            "content": "Utilizes luxury flat-lock couture stitching that leaves a smooth, zero-pressure profile against skin sensitive regions."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

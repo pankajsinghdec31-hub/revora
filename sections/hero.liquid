@@ -1,0 +1,129 @@
+{%- comment -%}
+Modular Hero Section
+{%- endcomment -%}
+
+<section class="hero-section" id="hero" data-section-id="{{ section.id }}">
+  <div class="hero-bg-container">
+    {%- if section.settings.video_url != blank -%}
+      <!-- Video Loop -->
+      <video class="hero-video-bg" autoplay loop muted playsinline>
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.image != blank -%}
+      <!-- Fallback Image -->
+      <img src="{{ section.settings.image | image_url: width: 2000 }}" 
+           alt="{{ section.settings.title }}" 
+           class="hero-image-bg">
+    {%- else -%}
+      <!-- Default ThreeJS Canvas target -->
+      <canvas id="canvas3d" class="hero-canvas-bg"></canvas>
+    {%- endif -%}
+    <!-- Dark/Beige Luxury overlay -->
+    <div class="hero-overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+  </div>
+
+  <div class="container hero-content-container">
+    <div class="hero-content {% if section.settings.text_alignment == 'center' %}text-center{% endif %}">
+      <h1 class="hero-title" id="hero-heading">{{ section.settings.title }}</h1>
+      <p class="hero-subtitle" id="hero-subtext">{{ section.settings.subtitle }}</p>
+      
+      {%- if section.settings.cta_label != blank -%}
+        <div class="hero-btn-wrap" id="hero-cta-wrap">
+          <a href="{{ section.settings.cta_link }}" class="luxury-btn btn-primary">
+            <span class="btn-text">{{ section.settings.cta_label }}</span>
+            <span class="btn-hover-effect"></span>
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.show_scroll_indicator -%}
+    <div class="scroll-indicator-wrap">
+      <span class="scroll-text">Scroll to Discover</span>
+      <div class="scroll-line-container">
+        <div class="scroll-line-active"></div>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Luxury Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "MP4 Video URL",
+      "info": "Upload an MP4 under files and paste the URL here. Leave empty to fallback to Three.js canvas or image."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Fallback Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 35
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "SENSORY LUXURY"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "Second-Skin Comfort. Handcrafted Elegance."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button Label",
+      "default": "Explore The Collection"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show Scroll Indicator Link",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Hero Banner",
+      "category": "Banner"
+    }
+  ]
+}
+{% endschema %}

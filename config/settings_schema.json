@@ -1,0 +1,100 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Revora Luxury Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity",
+    "theme_documentation_url": "https://revora.com/docs",
+    "theme_support_url": "https://revora.com/support"
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Heading Font",
+        "default": "serif"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body Font",
+        "default": "sans-serif"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Creamy Beige Honeyed Background",
+        "default": "#F2E8D6"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Deep Espresso Primary",
+        "default": "#4A342B"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Warm Caramel Sand Accent",
+        "default": "#C8AD7C"
+      },
+      {
+        "type": "color",
+        "id": "color_white",
+        "label": "Pure White",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_card_bg",
+        "label": "Product Card Glassmorphism Overlay",
+        "default": "rgba(255, 255, 255, 0.45)"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Glass Borders",
+        "default": "rgba(200, 173, 124, 0.25)"
+      }
+    ]
+  },
+  {
+    "name": "Luxury Cursor",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_custom_cursor",
+        "label": "Enable Custom Dragonfly Follower Cursor",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social Media Links",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com/revora"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest URL"
+      }
+    ]
+  }
+]

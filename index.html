@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>REVORA | Premium Luxury Underwear & Lingerie</title>
+  <meta name="description" content="Wear nothing but yourself. Experience world-class luxury underwear and lingerie made from premium modal fabric. Impeccable fit, sustainable craftsmanship, and ultimate comfort.">
+  <meta name="keywords" content="luxury underwear, premium lingerie, modal boxer briefs, high-end loungewear, Revora">
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- GSAP ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- Custom Luxury Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-follower" id="custom-follower">
+    <svg class="cursor-dragonfly" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" stroke="#C8AD7C" stroke-width="1.5"/>
+      <line x1="50" y1="30" x2="50" y2="70" stroke="#C8AD7C" stroke-width="1.5"/>
+      <circle cx="50" cy="27" r="2.5" fill="#C8AD7C"/>
+      <ellipse cx="37" cy="38" rx="14" ry="5" transform="rotate(-10 37 38)" stroke="#C8AD7C" stroke-width="1.5"/>
+      <ellipse cx="63" cy="38" rx="14" ry="5" transform="rotate(10 63 38)" stroke="#C8AD7C" stroke-width="1.5"/>
+      <ellipse cx="38" cy="48" rx="11" ry="4" transform="rotate(5 38 48)" stroke="#C8AD7C" stroke-width="1.5"/>
+      <ellipse cx="62" cy="48" rx="11" ry="4" transform="rotate(-5 62 48)" stroke="#C8AD7C" stroke-width="1.5"/>
+      <circle cx="50" cy="42" r="1.5" fill="#C8AD7C"/>
+      <circle cx="50" cy="54" r="1.3" fill="#C8AD7C"/>
+      <circle cx="50" cy="72" r="1" fill="#C8AD7C"/>
+    </svg>
+  </div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-slider">
+      <div class="announcement-item active">Free Express Shipping on Orders Over ₹12,500</div>
+      <div class="announcement-item">Premium Recycled Gift Box with Every Order</div>
+      <div class="announcement-item">Sensual Comfort Redefined — 95% Micro-Modal</div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header id="site-header">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="#" class="logo" id="header-logo-trigger">
+        <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="45" stroke="#C8AD7C" stroke-width="2"/>
+          <line x1="50" y1="30" x2="50" y2="70" stroke="#C8AD7C" stroke-width="2"/>
+          <circle cx="50" cy="27" r="3" fill="#C8AD7C"/>
+          <ellipse cx="37" cy="38" rx="14" ry="5" transform="rotate(-10 37 38)" stroke="#C8AD7C" stroke-width="2"/>
+          <ellipse cx="63" cy="38" rx="14" ry="5" transform="rotate(10 63 38)" stroke="#C8AD7C" stroke-width="2"/>
+          <ellipse cx="38" cy="48" rx="11" ry="4" transform="rotate(5 38 48)" stroke="#C8AD7C" stroke-width="2"/>
+          <ellipse cx="62" cy="48" rx="11" ry="4" transform="rotate(-5 62 48)" stroke="#C8AD7C" stroke-width="2"/>
+          <circle cx="50" cy="42" r="2" fill="#C8AD7C"/>
+          <circle cx="50" cy="54" r="1.8" fill="#C8AD7C"/>
+          <circle cx="50" cy="72" r="1.5" fill="#C8AD7C"/>
+        </svg>
+        <span class="logo-text">REVORA</span>
+      </a>
+
+      <!-- Desktop Nav Link Menu -->
+      <nav class="desktop-nav">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#best-sellers">Collections</a></li>
+          <li class="nav-item"><a href="#fabric-tech">The Fabric</a></li>
+          <li class="nav-item"><a href="#brand-story">Our Story</a></li>
+          <li class="nav-item"><a href="#faq">Track Order</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Search Trigger -->
+        <button class="action-btn" id="search-trigger" aria-label="Search site">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+        <!-- Wishlist Drawer Trigger -->
+        <button class="action-btn" id="wishlist-trigger" aria-label="Wishlist">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          <span class="badge-count" id="wishlist-badge">0</span>
+        </button>
+        <!-- Cart Drawer Trigger -->
+        <button class="action-btn" id="cart-trigger" aria-label="Cart">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="badge-count" id="cart-badge">0</span>
+        </button>
+        <!-- Mobile Menu Toggle -->
+        <button class="action-btn menu-toggle" id="mobile-menu-trigger" aria-label="Toggle menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dynamic Drawer overlays -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <!-- Cart Drawer -->
+  <div class="drawer" id="cart-drawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Shopping Cart</h3>
+      <button class="drawer-close" id="cart-close">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <!-- Shipping Goal -->
+      <div class="cart-shipping-goal">
+        <span id="shipping-goal-text">Spend ₹12,500 more for Free Express Shipping</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="shipping-progress"></div>
+        </div>
+      </div>
+      <!-- Cart items -->
+      <div class="cart-items-list" id="cart-items-container">
+        <!-- Rendered dynamically in JavaScript -->
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <div class="cart-total-row">
+        <span>Estimated Total</span>
+        <span class="cart-total-price" id="cart-total-price">₹0.00</span>
+      </div>
+      <button class="btn btn-primary" style="width:100%" id="checkout-btn">
+        <span>Proceed to Secure Checkout</span>
+      </button>
+      <!-- Dynamic Cross-Sell -->
+      <div class="cart-upsell-box">
+        <div class="cart-upsell-title">
+          <span>Add Luxury Packaging</span>
+          <span style="font-weight:700">₹799.00</span>
+        </div>
+        <div class="cart-upsell-item">
+          <img src="assets/images/hero_silk_bg.png" class="cart-upsell-img" alt="Premium ribbon drawer box">
+          <div class="cart-upsell-details">
+            <strong>Revora Signature Gift Box</strong>
+            <p style="font-size:0.75rem;opacity:0.8">Foiled logo matte box with velvet wrap</p>
+          </div>
+          <button class="cart-upsell-btn" id="add-giftbox-btn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Drawer -->
+  <div class="drawer" id="wishlist-drawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Wishlist</h3>
+      <button class="drawer-close" id="wishlist-close">&times;</button>
+    </div>
+    <div class="drawer-content" id="wishlist-items-container">
+      <!-- Wishlist items are rendered dynamically in JavaScript -->
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu Drawer -->
+  <div class="drawer drawer-left" id="mobile-menu-drawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Menu</h3>
+      <button class="drawer-close" id="mobile-menu-close">&times;</button>
+    </div>
+    <div class="drawer-content" style="padding-top:3rem;">
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:2.5rem; font-size:1.8rem; font-family:var(--font-serif)">
+        <li><a href="#best-sellers" class="mobile-nav-link">Collections</a></li>
+        <li><a href="#fabric-tech" class="mobile-nav-link">The Fabric</a></li>
+        <li><a href="#brand-story" class="mobile-nav-link">Our Story</a></li>
+        <li><a href="#faq" class="mobile-nav-link">Track Order</a></li>
+      </ul>
+      <div style="margin-top:6rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:2rem;">
+        <span style="display:block; font-size:0.8rem; color:var(--caramel); margin-bottom:1rem; letter-spacing:0.1em; text-transform:uppercase;">Customer Service</span>
+        <p style="font-size:0.95rem; opacity:0.8; margin-bottom:0.5rem;">support@revora.com</p>
+        <p style="font-size:0.95rem; opacity:0.8;">+1 (800) 555-REVORA</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Search Overlay -->
+  <div class="search-overlay" id="search-overlay">
+    <button class="search-close" id="search-close">&times;</button>
+    <div class="search-input-wrap">
+      <span class="search-input-label">What are you looking for?</span>
+      <input type="text" class="search-input" id="search-input" placeholder="Search our collections..." autofocus>
+    </div>
+    <div class="search-suggestions">
+      <h4 class="search-suggestions-title">Trending Searches</h4>
+      <div class="search-tags">
+        <a href="#" class="search-tag search-tag-trigger">Boxer Briefs</a>
+        <a href="#" class="search-tag search-tag-trigger">Lingerie Sets</a>
+        <a href="#" class="search-tag search-tag-trigger">Signature Silk</a>
+        <a href="#" class="search-tag search-tag-trigger">Gift Boxes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HOMEPAGE WRAPPER -->
+  <main id="homepage-view">
+    <!-- HERO SECTION -->
+    <section class="hero-section brown-theme" id="hero">
+      <div class="hero-bg-wrapper" id="hero-bg-gradient"></div>
+      <div class="hero-bg-overlay"></div>
+      
+      <!-- Scroll Image Showcase Container -->
+      <div class="hero-image-showcase-container">
+        <canvas id="hero-canvas"></canvas>
+      </div>
+      
+      <!-- HERO CONTENT OVERLAY -->
+      <div class="container hero-campaign-container">
+        <div class="hero-content">
+          <div class="hero-title-wrap">
+            <h1 class="hero-title" id="hero-heading">
+              <span class="hero-word-left">REVORA</span>
+              <span class="hero-word-right">Luxury</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Coordinated Secondary Title (Emerges when bra rotates to the left) -->
+      <h2 class="hero-secondary-title" id="hero-secondary-heading">
+        Premium <br><span>Feel</span>
+      </h2>
+      
+      <!-- Final Message (Emerges 20 frames before the end) -->
+      <h3 class="hero-final-text" id="hero-final-message">
+        Experience the <span>Comfort</span>
+      </h3>
+      
+      <div class="hero-scroll-indicator">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </div>
+    </section>
+
+    <!-- BEST SELLERS -->
+    <section class="section-padding best-sellers-section" id="best-sellers">
+      <div class="container">
+        <div class="section-title-wrap reveal-fade-up">
+          <span class="section-subtitle">Best Sellers</span>
+          <h2 class="section-title">Loved by Thousands</h2>
+          <p class="section-lead-text">Our most-loved lingerie, crafted for everyday luxury, confidence, and exceptional comfort.</p>
+          <a href="#collections" class="section-cta-link">View All Best Sellers &rarr;</a>
+        </div>
+        
+        <div class="products-carousel-container" id="best-sellers-carousel-wrap">
+          <!-- Products Carousel Nav buttons -->
+          <button class="products-carousel-nav prev" id="best-sellers-prev" aria-label="Previous products">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="products-carousel-nav next" id="best-sellers-next" aria-label="Next products">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+
+          <div class="products-carousel-viewport">
+            <div class="products-grid stagger-wrap">
+            <div class="product-card stagger-item" data-product-id="1">
+              <div class="product-img-wrap">
+                <span class="product-badge">Best Seller</span>
+                <button class="product-wishlist-btn wishlist-toggle-btn" data-id="1" aria-label="Add to wishlist">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <a href="#" class="pdp-trigger" data-id="1">
+                  <img src="assets/images/uploaded_burgundy_front.jpg" class="product-img" alt="Satin Contour Bra Set" data-img-index="0">
+                </a>
+                <!-- Quick View overlay button -->
+                <div class="product-quick-view-btn pdp-trigger" data-id="1">Quick View</div>
+              </div>
+              <div class="product-info">
+                <!-- Color thumbnail swatches (under image) -->
+                <div class="product-card-colors">
+                  <span class="product-swatch active" data-color="Deep Burgundy" data-index="0" style="background-image: url('assets/images/uploaded_burgundy_front.jpg');" title="Deep Burgundy"></span>
+                  <span class="product-swatch" data-color="Deep Espresso" data-index="1" style="background-image: url('assets/images/bra_brown_front.png');" title="Deep Espresso"></span>
+                  <span class="product-swatch" data-color="Creamy Beige" data-index="2" style="background-image: url('assets/images/bra_pink_front.jpg');" title="Creamy Beige"></span>
+                </div>
+
+                <div class="product-card-details">
+                  <h3 class="product-card-title"><a href="#" class="pdp-trigger" data-id="1">Satin Contour Bra Set</a></h3>
+                  <p class="product-card-benefit">Seamless wire-free contour, weightless support</p>
+                  <div class="product-rating-price-row">
+                    <div class="product-rating">
+                      <div class="rating-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                      </div>
+                      <span class="rating-count">(142)</span>
+                    </div>
+                    <div class="product-card-price-wrap">
+                      <span class="product-card-price">₹3,999.00</span>
+                      <span class="product-card-price-old">₹4,999.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sizes selector wrap -->
+                <div class="product-sizes-selector-wrap">
+                  <div class="product-sizes-selector">
+                    <button class="size-select-btn quick-add-size" data-id="1" data-size="XS">XS</button>
+                    <button class="size-select-btn quick-add-size" data-id="1" data-size="S">S</button>
+                    <button class="size-select-btn quick-add-size" data-id="1" data-size="M">M</button>
+                    <button class="size-select-btn quick-add-size" data-id="1" data-size="L">L</button>
+                    <button class="size-select-btn quick-add-size" data-id="1" data-size="XL">XL</button>
+                  </div>
+                </div>
+
+                <!-- Stateful Add to Bag Button -->
+                <button class="btn-add-to-bag quick-add-trigger" data-id="1">
+                  <span class="btn-text">Add to cart</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Satin Plunge Lingerie Set Card -->
+            <div class="product-card stagger-item" data-product-id="2">
+              <div class="product-img-wrap">
+                <span class="product-badge">Limited Edition</span>
+                <button class="product-wishlist-btn wishlist-toggle-btn" data-id="2" aria-label="Add to wishlist">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <a href="#" class="pdp-trigger" data-id="2">
+                  <img src="assets/images/uploaded_burgundy_full.jpg" class="product-img" alt="Satin Plunge Lingerie Set" data-img-index="0">
+                </a>
+                <div class="product-quick-view-btn pdp-trigger" data-id="2">Quick View</div>
+              </div>
+              <div class="product-info">
+                <!-- Color thumbnail swatches (under image) -->
+                <div class="product-card-colors">
+                  <span class="product-swatch active" data-color="Deep Burgundy" data-index="0" style="background-image: url('assets/images/uploaded_burgundy_full.jpg');" title="Deep Burgundy"></span>
+                  <span class="product-swatch" data-color="Warm Caramel Sand" data-index="1" style="background-image: url('assets/images/product_lingerie.png');" title="Warm Caramel Sand"></span>
+                  <span class="product-swatch" data-color="Creamy Beige" data-index="2" style="background-image: url('assets/images/bra_pink_front.png');" title="Creamy Beige"></span>
+                </div>
+
+                <div class="product-card-details">
+                  <h3 class="product-card-title"><a href="#" class="pdp-trigger" data-id="2">Satin Plunge Lingerie Set</a></h3>
+                  <p class="product-card-benefit">French lace detailing, contour plunge bralette</p>
+                  <div class="product-rating-price-row">
+                    <div class="product-rating">
+                      <div class="rating-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                      </div>
+                      <span class="rating-count">(98)</span>
+                    </div>
+                    <div class="product-card-price-wrap">
+                      <span class="product-card-price">₹9,999.00</span>
+                      <span class="product-card-price-old">₹11,999.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sizes selector wrap -->
+                <div class="product-sizes-selector-wrap">
+                  <div class="product-sizes-selector">
+                    <button class="size-select-btn quick-add-size" data-id="2" data-size="XS">XS</button>
+                    <button class="size-select-btn quick-add-size" data-id="2" data-size="S">S</button>
+                    <button class="size-select-btn quick-add-size" data-id="2" data-size="M">M</button>
+                    <button class="size-select-btn quick-add-size" data-id="2" data-size="L">L</button>
+                  </div>
+                </div>
+
+                <!-- Stateful Add to Bag Button -->
+                <button class="btn-add-to-bag quick-add-trigger" data-id="2">
+                  <span class="btn-text">Add to cart</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Rose Satin Cami Set Card -->
+            <div class="product-card stagger-item" data-product-id="3">
+              <div class="product-img-wrap">
+                <span class="product-badge">Signature</span>
+                <button class="product-wishlist-btn wishlist-toggle-btn" data-id="3" aria-label="Add to wishlist">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <a href="#" class="pdp-trigger" data-id="3">
+                  <img src="assets/images/uploaded_pink_teal.jpg" class="product-img" alt="Rose Satin Cami Set" data-img-index="0">
+                </a>
+                <div class="product-quick-view-btn pdp-trigger" data-id="3">Quick View</div>
+              </div>
+              <div class="product-info">
+                <!-- Color thumbnail swatches (under image) -->
+                <div class="product-card-colors">
+                  <span class="product-swatch active" data-color="Rose Pink" data-index="0" style="background-image: url('assets/images/uploaded_pink_teal.jpg');" title="Rose Pink"></span>
+                  <span class="product-swatch" data-color="Creamy Beige" data-index="1" style="background-image: url('assets/images/fabric_texture.png');" title="Creamy Beige"></span>
+                </div>
+
+                <div class="product-card-details">
+                  <h3 class="product-card-title"><a href="#" class="pdp-trigger" data-id="3">Rose Satin Cami Set</a></h3>
+                  <p class="product-card-benefit">Pure organic silk camisole and shorts set</p>
+                  <div class="product-rating-price-row">
+                    <div class="product-rating">
+                      <div class="rating-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                      </div>
+                      <span class="rating-count">(84)</span>
+                    </div>
+                    <div class="product-card-price-wrap">
+                      <span class="product-card-price">₹14,999.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sizes selector wrap -->
+                <div class="product-sizes-selector-wrap">
+                  <div class="product-sizes-selector">
+                    <button class="size-select-btn quick-add-size" data-id="3" data-size="S">S</button>
+                    <button class="size-select-btn quick-add-size" data-id="3" data-size="M">M</button>
+                    <button class="size-select-btn quick-add-size" data-id="3" data-size="L">L</button>
+                  </div>
+                </div>
+
+                <!-- Stateful Add to Bag Button -->
+                <button class="btn-add-to-bag quick-add-trigger" data-id="3">
+                  <span class="btn-text">Add to cart</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Deluxe Gift Box Card -->
+            <div class="product-card stagger-item" data-product-id="4">
+              <div class="product-img-wrap">
+                <span class="product-badge">Exclusive Packaging</span>
+                <button class="product-wishlist-btn wishlist-toggle-btn" data-id="4" aria-label="Add to wishlist">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <a href="#" class="pdp-trigger" data-id="4">
+                  <img src="assets/images/hero_silk_bg.png" class="product-img" alt="Revora Signature Gift Box" data-img-index="0">
+                </a>
+                <div class="product-quick-view-btn pdp-trigger" data-id="4">Quick View</div>
+              </div>
+              <div class="product-info">
+                <!-- Color thumbnail swatches (under image) -->
+                <div class="product-card-colors">
+                  <span class="product-swatch active" data-color="Deep Espresso" data-index="0" style="background-image: url('assets/images/hero_silk_bg.png');" title="Deep Espresso"></span>
+                </div>
+
+                <div class="product-card-details">
+                  <h3 class="product-card-title"><a href="#" class="pdp-trigger" data-id="4">Revora Signature Gift Box</a></h3>
+                  <p class="product-card-benefit">Premium ribbon box, velvet tissue wrap</p>
+                  <div class="product-rating-price-row">
+                    <div class="product-rating">
+                      <div class="rating-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                      </div>
+                      <span class="rating-count">(210)</span>
+                    </div>
+                    <div class="product-card-price-wrap">
+                      <span class="product-card-price">₹799.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sizes selector wrap -->
+                <div class="product-sizes-selector-wrap">
+                  <div class="product-sizes-selector">
+                    <button class="size-select-btn quick-add-size" data-id="4" data-size="O/S">O/S</button>
+                  </div>
+                </div>
+
+                <!-- Stateful Add to Bag Button -->
+                <button class="btn-add-to-bag quick-add-trigger" data-id="4">
+                  <span class="btn-text">Add to cart</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Sage Comfort Bralette Card -->
+            <div class="product-card stagger-item" data-product-id="5">
+              <div class="product-img-wrap">
+                <span class="product-badge">New</span>
+                <button class="product-wishlist-btn wishlist-toggle-btn" data-id="5" aria-label="Add to wishlist">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <a href="#" class="pdp-trigger" data-id="5">
+                  <img src="assets/images/bra_green_front.png" class="product-img" alt="Sage Comfort Bralette" data-img-index="0">
+                </a>
+                <div class="product-quick-view-btn pdp-trigger" data-id="5">Quick View</div>
+              </div>
+              <div class="product-info">
+                <div class="product-card-colors">
+                  <span class="product-swatch active" data-color="Sage Green" data-index="0" style="background-image: url('assets/images/bra_green_front.png');" title="Sage Green"></span>
+                  <span class="product-swatch" data-color="Sage Green Detail" data-index="1" style="background-image: url('assets/images/bra_green_back.png');" title="Sage Green Detail"></span>
+                </div>
+
+                <div class="product-card-details">
+                  <h3 class="product-card-title"><a href="#" class="pdp-trigger" data-id="5">Sage Comfort Bralette</a></h3>
+                  <p class="product-card-benefit">Austria beechwood modal, ultra-soft support</p>
+                  <div class="product-rating-price-row">
+                    <div class="product-rating">
+                      <div class="rating-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                      </div>
+                      <span class="rating-count">(64)</span>
+                    </div>
+                    <div class="product-card-price-wrap">
+                      <span class="product-card-price">₹3,499.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="product-sizes-selector-wrap">
+                  <div class="product-sizes-selector">
+                    <button class="size-select-btn quick-add-size" data-id="5" data-size="S">S</button>
+                    <button class="size-select-btn quick-add-size" data-id="5" data-size="M">M</button>
+                    <button class="size-select-btn quick-add-size" data-id="5" data-size="L">L</button>
+                  </div>
+                </div>
+
+                <button class="btn-add-to-bag quick-add-trigger" data-id="5">
+                  <span class="btn-text">Add to cart</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Slate Blue Active Bra Card -->
+            <div class="product-card stagger-item" data-product-id="6">
+              <div class="product-img-wrap">
+                <span class="product-badge">New</span>
+                <button class="product-wishlist-btn wishlist-toggle-btn" data-id="6" aria-label="Add to wishlist">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <a href="#" class="pdp-trigger" data-id="6">
+                  <img src="assets/images/bra_blue_front.png" class="product-img" alt="Slate Blue Active Bra" data-img-index="0">
+                </a>
+                <div class="product-quick-view-btn pdp-trigger" data-id="6">Quick View</div>
+              </div>
+              <div class="product-info">
+                <div class="product-card-colors">
+                  <span class="product-swatch active" data-color="Slate Blue" data-index="0" style="background-image: url('assets/images/bra_blue_front.png');" title="Slate Blue"></span>
+                  <span class="product-swatch" data-color="Slate Blue Detail" data-index="1" style="background-image: url('assets/images/bra_blue_back.png');" title="Slate Blue Detail"></span>
+                </div>
+
+                <div class="product-card-details">
+                  <h3 class="product-card-title"><a href="#" class="pdp-trigger" data-id="6">Slate Blue Active Bra</a></h3>
+                  <p class="product-card-benefit">Four-way stretch recovery, dynamic seamless fit</p>
+                  <div class="product-rating-price-row">
+                    <div class="product-rating">
+                      <div class="rating-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                      </div>
+                      <span class="rating-count">(72)</span>
+                    </div>
+                    <div class="product-card-price-wrap">
+                      <span class="product-card-price">₹3,299.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="product-sizes-selector-wrap">
+                  <div class="product-sizes-selector">
+                    <button class="size-select-btn quick-add-size" data-id="6" data-size="S">S</button>
+                    <button class="size-select-btn quick-add-size" data-id="6" data-size="M">M</button>
+                    <button class="size-select-btn quick-add-size" data-id="6" data-size="L">L</button>
+                    <button class="size-select-btn quick-add-size" data-id="6" data-size="XL">XL</button>
+                  </div>
+                </div>
+
+                <button class="btn-add-to-bag quick-add-trigger" data-id="6">
+                  <span class="btn-text">Add to cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+
+    <!-- WHY CHOOSE US / VALUES -->
+    <section class="section-padding why-choose-us-section" id="values">
+      <div class="container">
+        <div class="section-title-wrap reveal-fade-up">
+          <span class="section-subtitle">Premium Craftsmanship</span>
+          <h2 class="section-title">The Art of Intimate Perfection</h2>
+        </div>
+
+        <div class="editorial-grid">
+          <!-- Value Card 1 -->
+          <div class="editorial-card reveal-scale">
+            <div class="editorial-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5c-3 0-5.5 2-6.5 5C4.5 13 5.5 16 8 17.5c2 1.2 4.5.8 6-.8 1.5 1.6 4 .8 6-.8 2.5-1.5 3.5-4.5 2.5-7.5-1-3-3.5-5-6.5-5z" />
+                <path d="M12 5v14" />
+                <path d="M6 10c1.5 1.5 3 2 6 2s4.5-.5 6-2" />
+              </svg>
+            </div>
+            <div class="editorial-stat-wrap">
+              <span class="editorial-stat-num">100%</span>
+            </div>
+            <h3 class="editorial-card-title">Wire-Free Support</h3>
+            <p class="editorial-card-text">
+              3D contour-molding lifts and sculpts with <strong>0% underwires</strong>, reducing shoulder pressure by <strong>up to 45%</strong> for weightless all-day support.
+            </p>
+          </div>
+
+          <!-- Value Card 2 -->
+          <div class="editorial-card reveal-scale" style="transition-delay: 0.15s;">
+            <div class="editorial-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76z" />
+                <path d="M16 8L2 22" />
+                <path d="M17.5 15H9" />
+              </svg>
+            </div>
+            <div class="editorial-stat-wrap">
+              <span class="editorial-stat-num">2.5x</span>
+            </div>
+            <h3 class="editorial-card-title">Softer Than Silk</h3>
+            <p class="editorial-card-text">
+              Certified organic modal is <strong>50% more breathable</strong> than cotton — wicking moisture in under <strong>2 seconds</strong>, so your skin stays cool and fresh <strong>24/7</strong>.
+            </p>
+          </div>
+
+          <!-- Value Card 3 -->
+          <div class="editorial-card reveal-scale" style="transition-delay: 0.3s;">
+            <div class="editorial-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6c4 0 6 3 8 3s4-3 8-3M4 14c4 0 6 3 8 3s4-3 8-3M4 6v8c0 4 3 6 8 6s8-2 8-6V6" />
+                <path d="M12 9v11" />
+              </svg>
+            </div>
+            <div class="editorial-stat-wrap">
+              <span class="editorial-stat-num">0%</span>
+            </div>
+            <h3 class="editorial-card-title">Visible Lines Guarantee</h3>
+            <p class="editorial-card-text">
+              Laser-cut edges lie <strong>100% flat</strong> under any outfit, while <strong>anti-roll micro-waistbands</strong> stretch <strong>4 ways</strong> — zero pinching, zero riding.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM FABRIC TECHNOLOGY -->
+    <section class="section-padding fabric-tech-section" id="fabric-tech">
+      <div class="container">
+        <div class="fabric-grid">
+          <!-- Left side: Detailed photo image with hot spots -->
+          <div class="fabric-image-showcase reveal-fade-up">
+            <img src="assets/images/fabric_texture.png" class="fabric-image" alt="Micro-modal luxury fabric macro shot">
+          </div>
+
+          <!-- Right side: Accordion details -->
+          <div class="fabric-info-accordion reveal-blur">
+            <div class="fabric-tech-header">
+              <span class="section-subtitle">Fabric Engineering</span>
+              <h2 class="fabric-tech-title">95% Modal / 5% Elastane</h2>
+              <p style="font-size:1.05rem; opacity:0.8;">The perfect luxury golden ratio blend. Woven to breathe, stretch, and hug your form without restriction.</p>
+            </div>
+
+            <div class="fabric-accordion-list">
+              <!-- Item 1 -->
+              <div class="fabric-accordion-item active">
+                <div class="fabric-accordion-header">
+                  <h3 class="fabric-accordion-title">Micro-Climate Breathability</h3>
+                  <svg class="fabric-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="fabric-accordion-content" style="max-height: 200px;">
+                  <p class="fabric-accordion-text">
+                     Beechwood modal fibers naturally pull moisture away from the body 50% more efficiently than cotton. Keeps you cool, dry, and clean throughout the day and night.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="fabric-accordion-item">
+                <div class="fabric-accordion-header">
+                  <h3 class="fabric-accordion-title">Anti-Static Satin Weave</h3>
+                  <svg class="fabric-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="fabric-accordion-content">
+                  <p class="fabric-accordion-text">
+                    Our unique proprietary weaving technique results in an incredibly smooth, anti-cling surface that eliminates friction against clothing and skin irritation.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="fabric-accordion-item">
+                <div class="fabric-accordion-header">
+                  <h3 class="fabric-accordion-title">Durable High-Recovery Stretch</h3>
+                  <svg class="fabric-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="fabric-accordion-content">
+                  <p class="fabric-accordion-text">
+                    5% premium Elastane core threads offer robust multidirectional recovery, preventing sagging or losing shape even after dozens of machine washes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP BY COLLECTION -->
+    <section class="section-padding collections-section" id="collections">
+      <div class="container">
+        <div class="section-title-wrap reveal-fade-up">
+          <span class="section-subtitle">Curated Silhouettes</span>
+          <h2 class="section-title">Shop by Collection</h2>
+        </div>
+
+        <div class="collections-grid stagger-wrap">
+          <!-- Col 1: Large Men's Collection -->
+          <div class="collection-banner stagger-item">
+            <img src="assets/images/product_briefs.png" class="collection-banner-bg" alt="Men's collection banner">
+            <div class="collection-banner-overlay"></div>
+            <div class="collection-banner-content">
+              <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--caramel)">Sophistication</span>
+              <h3 class="collection-banner-title">The Men's Line</h3>
+              <a href="#best-sellers" class="collection-banner-link">
+                <span>View Products</span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Women's Lingerie -->
+          <div class="collection-banner stagger-item" style="height: 500px;">
+            <img src="assets/images/product_lingerie.png" class="collection-banner-bg" alt="Women's lingerie banner">
+            <div class="collection-banner-overlay"></div>
+            <div class="collection-banner-content">
+              <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--caramel)">Sensuality</span>
+              <h3 class="collection-banner-title">Lingerie</h3>
+              <a href="#best-sellers" class="collection-banner-link">
+                <span>Explore</span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 3: Accessories & Giftboxes -->
+          <div class="collection-banner stagger-item">
+            <img src="assets/images/hero_silk_bg.png" class="collection-banner-bg" alt="Gifts and packaging banner">
+            <div class="collection-banner-overlay"></div>
+            <div class="collection-banner-content">
+              <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--caramel)">Exclusive</span>
+              <h3 class="collection-banner-title">Gift Sets</h3>
+              <a href="#best-sellers" class="collection-banner-link">
+                <span>Shop Gifts</span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIFESTYLE GALLERY / EDITORIAL -->
+    <section class="gallery-section" id="editorial">
+      <div class="gallery-editorial-wrap">
+        <!-- Left: Text Panel -->
+        <div class="gallery-text-panel reveal-blur">
+          <span class="section-subtitle">Revora Philosophy</span>
+          <h2 class="gallery-heading">Luxury is <span>Invisible.</span></h2>
+          <p class="gallery-text">
+            We believe that the finest garments are the ones you forget you are wearing. True luxury is an intimate confidence, a silent standard of high-end details that elevate your every day.
+          </p>
+          <div>
+            <a href="#best-sellers" class="btn btn-outline-white">
+              <span>Read the Manifesto</span>
+            </a>
+          </div>
+        </div>
+        <!-- Right: Background Lifestyle Image -->
+        <div class="gallery-image-panel reveal-fade-up">
+          <img src="assets/images/hero_silk_bg.png" class="gallery-img-bg" alt="Luxury editorial mood shot">
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS -->
+    <section class="section-padding reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-title-wrap reveal-fade-up">
+          <span class="section-subtitle">Verified Experiences</span>
+          <h2 class="section-title">The Journal</h2>
+        </div>
+
+        <div class="reviews-slider reveal-blur">
+          <div class="slider-nav">
+            <button class="slider-nav-btn" id="prev-review" aria-label="Previous review">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button class="slider-nav-btn" id="next-review" aria-label="Next review">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <!-- Slide 1 -->
+          <div class="review-slide active">
+            <div class="review-stars">
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <blockquote class="review-quote">
+              "The comfort is absolutely unrivaled. The micro-modal fabric feels extremely soft, almost weightless, while the waistband remains flat and supportive. Truly worth every dollar."
+            </blockquote>
+            <span class="review-author">Marcus G.</span>
+            <span class="review-verified">Verified Purchase</span>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="review-slide">
+            <div class="review-stars">
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <blockquote class="review-quote">
+              "The design details are gorgeous. I love the minimalist dragonfly logo and the presentation box is a work of art in itself. Perfect for luxury gifts!"
+            </blockquote>
+            <span class="review-author">Helena R.</span>
+            <span class="review-verified">Verified Purchase</span>
+          </div>
+        </div>
+
+        <!-- Trust bar CRO Elements -->
+        <div class="trust-bar reveal-fade-up">
+          <div class="trust-grid">
+            <!-- Item 1 -->
+            <div class="trust-item">
+              <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              <div>
+                <h4 class="trust-item-title">Luxury Shipping</h4>
+                <p class="trust-item-descr">Free express over ₹12,500</p>
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="trust-item">
+              <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              <div>
+                <h4 class="trust-item-title">Secure Checkout</h4>
+                <p class="trust-item-descr">AES 256 encryption</p>
+              </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="trust-item">
+              <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.23"/></svg>
+              <div>
+                <h4 class="trust-item-title">Complimentary Returns</h4>
+                <p class="trust-item-descr">30-day elegant return policy</p>
+              </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="trust-item">
+              <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <h4 class="trust-item-title">Sensual Fit Guarantee</h4>
+                <p class="trust-item-descr">Free resizing exchange</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM FEED -->
+    <section class="section-padding instagram-section" id="instagram">
+      <div class="container">
+        <div class="section-title-wrap reveal-fade-up">
+          <span class="section-subtitle">Visual Inspiration</span>
+          <h2 class="section-title">Wear Confidence</h2>
+        </div>
+
+        <div class="instagram-grid stagger-wrap">
+          <!-- Item 1 -->
+          <div class="instagram-item stagger-item">
+            <img src="assets/images/hero_silk_bg.png" class="instagram-img" alt="Luxury underwear wear style">
+            <div class="instagram-overlay">
+              <svg class="instagram-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="instagram-item stagger-item">
+            <img src="assets/images/product_briefs.png" class="instagram-img" alt="Underwear boxer display">
+            <div class="instagram-overlay">
+              <svg class="instagram-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div class="instagram-item stagger-item">
+            <img src="assets/images/fabric_texture.png" class="instagram-img" alt="Draped silk detail">
+            <div class="instagram-overlay">
+              <svg class="instagram-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+          </div>
+          <!-- Item 4 -->
+          <div class="instagram-item stagger-item">
+            <img src="assets/images/product_lingerie.png" class="instagram-img" alt="Underwear lingerie flatlay">
+            <div class="instagram-overlay">
+              <svg class="instagram-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+          </div>
+          <!-- Item 5 -->
+          <div class="instagram-item stagger-item">
+            <img src="assets/images/hero_silk_bg.png" class="instagram-img" alt="Luxury bedroom sheets model photoshoot">
+            <div class="instagram-overlay">
+              <svg class="instagram-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND STORY -->
+    <section class="section-padding brand-story-section" id="brand-story">
+      <div class="container brand-story-container">
+        <div class="brand-story-grid">
+          <!-- Left Column: Overlapping Images Collage -->
+          <div class="brand-story-images-column">
+            <div class="primary-image-wrap">
+              <img src="assets/images/story_craftsmanship.png" alt="Organic micro-modal fabric draping elegantly reflecting Revora comfort" class="story-img-primary">
+            </div>
+            <div class="secondary-image-wrap">
+              <img src="assets/images/fabric_texture.png" alt="Close-up texture of organic fabric weave" class="story-img-secondary">
+            </div>
+          </div>
+          
+          <!-- Right Column: Narrative Content -->
+          <div class="brand-story-content-column">
+            <span class="section-subtitle">Wear Nothing But Yourself</span>
+            <h2 class="section-title">The Revora Vision</h2>
+            
+            <div class="brand-story-text-wrap">
+              <p class="brand-story-quote">
+                "We set out to strip away the noise. Underwear should not be a flashy billboard; it should be a quiet sanctuary of touch."
+              </p>
+              <p class="brand-story-body">
+                By choosing organic beechwood modal fibers and eliminating irritating hardware or tight seams, we created garments that adapt seamlessly to your body. We don't frame you — we set you free.
+              </p>
+              <p class="brand-story-body">
+                Every piece is tailored with invisible micro-stitches and soft luxury elasticity that moves with you, bringing weightless comfort to the center of your daily ritual.
+              </p>
+            </div>
+            
+            <div class="brand-story-signature">
+              <span class="signature-name">Aditya Tayal</span>
+              <span class="signature-title">Founder & CEO, Revora</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-padding faq-section" id="faq">
+      <div class="container">
+        <div class="section-title-wrap reveal-fade-up">
+          <span class="section-subtitle">Customer Care</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-container reveal-blur">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <div class="faq-header">
+              <h3 class="faq-question">How do I wash and care for my Revora underwear?</h3>
+              <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <div class="faq-content">
+              <p class="faq-text">
+                To maximize the life of your micro-modal garments, we recommend hand washing in cold water or machine washing on a delicate cycle in a mesh laundry bag. Avoid bleaching, lay flat to dry in shade, and do not iron or dry clean.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <div class="faq-header">
+              <h3 class="faq-question">What is your exchange and resizing policy?</h3>
+              <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <div class="faq-content">
+              <p class="faq-text">
+                We want you to feel completely comfortable. If the fit isn't absolutely perfect, we offer a complimentary size exchange on your first order within 30 days of purchase. Simply print out our prepaid label and send it back.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <div class="faq-header">
+              <h3 class="faq-question">Are the materials sustainable?</h3>
+              <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <div class="faq-content">
+              <p class="faq-text">
+                Yes. Our modal fibers are sourced from FSC-certified sustainable Austrian beechwood forests. The fiber manufacturing process uses a closed-loop system recycling 95% of water and solvents, creating a carbon-neutral raw material.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section-padding newsletter-section" id="newsletter">
+      <div class="container newsletter-content">
+        <div class="reveal-fade-up">
+          <span class="section-subtitle">Privé Access</span>
+          <h2 class="newsletter-title">The Newsletter</h2>
+          <p class="newsletter-descr">Subscribe to receive exclusive collection drops, editorial content, and a 15% discount on your first purchase.</p>
+        </div>
+        <form class="newsletter-form reveal-scale" id="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Enter your email address..." required aria-label="Email address">
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SINGLE DETAILED PRODUCT DETAIL PAGE VIEW -->
+  <main id="product-detail-view" class="section-padding">
+    <div class="container">
+      
+      <!-- Back trigger -->
+      <a class="pdp-back-btn" id="pdp-back-trigger">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <span>Back to Collections</span>
+      </a>
+
+      <div class="pdp-grid">
+        <!-- Left: Image Gallery & 360 viewer -->
+        <div>
+          <!-- Static/Zoom Image View -->
+          <div class="pdp-main-img-wrap" id="pdp-image-view">
+            <img src="assets/images/product_briefs.png" class="pdp-main-img" id="pdp-main-image" alt="Product detailed view">
+          </div>
+
+          <!-- 360 Frame Viewer Container -->
+          <div class="pdp-360-viewer" id="pdp-360-view">
+            <canvas class="pdp-360-canvas" id="pdp-canvas-360"></canvas>
+            <div class="pdp-360-badge">360° View • Drag to Rotate</div>
+          </div>
+
+          <!-- View Mode Toggles -->
+          <div class="pdp-view-selector">
+            <button class="pdp-view-btn active" id="btn-view-gallery">Gallery View</button>
+            <button class="pdp-view-btn" id="btn-view-360">Interactive 360°</button>
+          </div>
+
+          <!-- Image Thumbnails -->
+          <div class="pdp-gallery-thumbs" id="pdp-thumbs-wrap">
+            <div class="pdp-thumb active" data-img="assets/images/product_briefs.png">
+              <img src="assets/images/product_briefs.png" alt="Thumbnail 1">
+            </div>
+            <div class="pdp-thumb" data-img="assets/images/hero_silk_bg.png">
+              <img src="assets/images/hero_silk_bg.png" alt="Thumbnail 2">
+            </div>
+            <div class="pdp-thumb" data-img="assets/images/fabric_texture.png">
+              <img src="assets/images/fabric_texture.png" alt="Thumbnail 3">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Purchase Details & Form -->
+        <div class="pdp-info">
+          <div class="pdp-rating-wrap">
+            <div class="pdp-stars">
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <span class="pdp-rating-text">4.9/5.0 Stars (124 Verified Reviews)</span>
+          </div>
+
+          <h2 class="pdp-title" id="pdp-detail-title">The Signature Boxer Brief</h2>
+          
+          <div class="pdp-price-wrap">
+            <span class="pdp-price" id="pdp-detail-price">₹3,999.00</span>
+            <span class="pdp-price-old" id="pdp-detail-price-old">₹4,999.00</span>
+          </div>
+
+          <p class="pdp-short-descr" id="pdp-detail-descr">
+            Sensually tailored with a relaxed flatlock stitch and seamless side structure. Made with 95% premium beechwood modal to keep you comfortable in your own skin.
+          </p>
+
+          <!-- Color swatches -->
+          <div>
+            <span class="pdp-variant-label">Color: <span id="pdp-selected-color">Deep Espresso</span></span>
+            <div class="pdp-color-swatches">
+              <div class="pdp-color-swatch active" data-color="Deep Espresso" style="background:#4A342B;"></div>
+              <div class="pdp-color-swatch" data-color="Warm Caramel Sand" style="background:#C8AD7C;"></div>
+              <div class="pdp-color-swatch" data-color="Creamy Beige Honeyed" style="background:#F2E8D6;"></div>
+            </div>
+          </div>
+
+          <!-- Size selector -->
+          <div class="pdp-size-selector">
+            <div class="pdp-size-header">
+              <span class="pdp-variant-label">Size: <span id="pdp-selected-size">M</span></span>
+              <a class="pdp-fit-guide-link" id="pdp-fit-guide-trigger">Size & Fit Guide</a>
+            </div>
+            <div class="pdp-size-options" id="pdp-sizes-container">
+              <button class="pdp-size-btn active pdp-size-select" data-size="XS">XS</button>
+              <button class="pdp-size-btn pdp-size-select" data-size="S">S</button>
+              <button class="pdp-size-btn pdp-size-select" data-size="M">M</button>
+              <button class="pdp-size-btn pdp-size-select" data-size="L">L</button>
+              <button class="pdp-size-btn pdp-size-select" data-size="XL">XL</button>
+            </div>
+          </div>
+
+          <!-- Quantity and purchase row -->
+          <div class="pdp-actions-row">
+            <div class="pdp-qty-adjuster">
+              <button class="pdp-qty-btn" id="pdp-qty-minus">&minus;</button>
+              <input type="text" class="pdp-qty-val" id="pdp-qty-input" value="1" readonly>
+              <button class="pdp-qty-btn" id="pdp-qty-plus">&plus;</button>
+            </div>
+            <button class="btn btn-primary pdp-add-btn" id="pdp-add-to-cart">
+              <span>Add to Cart</span>
+            </button>
+            <button class="pdp-wishlist-btn wishlist-toggle-btn" id="pdp-wishlist-toggle" aria-label="Add to wishlist">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </button>
+          </div>
+
+          <!-- Dynamic Accordion details -->
+          <div class="fabric-info-accordion">
+            <div class="fabric-accordion-item">
+              <div class="fabric-accordion-header">
+                <h3 class="fabric-accordion-title">Premium Fabric & Care</h3>
+                <svg class="fabric-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="fabric-accordion-content">
+                <p class="fabric-accordion-text">
+                  Crafted using 95% Organic Micro-Modal and 5% Elastane. Hand wash in cold water or machine wash delicate. Lay flat to dry. Do not iron, bleach, or dry clean.
+                </p>
+              </div>
+            </div>
+
+            <div class="fabric-accordion-item">
+              <div class="fabric-accordion-header">
+                <h3 class="fabric-accordion-title">Shipping & Returns</h3>
+                <svg class="fabric-accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="fabric-accordion-content">
+                  <p class="fabric-accordion-text">
+                    Complimentary express shipping on all orders over ₹12,500. Standard shipping takes 3-5 business days. 30-day elegant return window with prepaid shipping labels included.
+                  </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frequently Bought Together Bundle Builder -->
+          <div class="pdp-bundle-offer">
+            <div class="pdp-bundle-title">
+              <span>Frequently Bought Together</span>
+              <span class="pdp-bundle-tag">Save 15%</span>
+            </div>
+            <div class="pdp-bundle-grid">
+              <!-- Item 1 (self) -->
+              <div class="pdp-bundle-item">
+                <input type="checkbox" class="pdp-bundle-checkbox" id="bundle-check-1" checked disabled>
+                <img src="assets/images/product_briefs.png" class="pdp-bundle-img" id="bundle-img-1" alt="Boxers">
+                <div class="pdp-bundle-name" id="bundle-name-1">Signature Briefs</div>
+                <div class="pdp-bundle-price" id="bundle-price-1">₹3,999.00</div>
+              </div>
+              <!-- Item 2 (Lingerie/Slip) -->
+              <div class="pdp-bundle-item">
+                <input type="checkbox" class="pdp-bundle-checkbox bundle-calc-trigger" id="bundle-check-2" checked>
+                <img src="assets/images/product_lingerie.png" class="pdp-bundle-img" alt="Lingerie set">
+                <div class="pdp-bundle-name">Lingerie Set</div>
+                <div class="pdp-bundle-price">₹9,999.00</div>
+              </div>
+              <!-- Item 3 (Packaging) -->
+              <div class="pdp-bundle-item">
+                <input type="checkbox" class="pdp-bundle-checkbox bundle-calc-trigger" id="bundle-check-3">
+                <img src="assets/images/hero_silk_bg.png" class="pdp-bundle-img" alt="Luxury box">
+                <div class="pdp-bundle-name">Luxury Gift Box</div>
+                <div class="pdp-bundle-price">₹799.00</div>
+              </div>
+            </div>
+            
+            <div class="pdp-bundle-action-row">
+              <div>
+                <span style="font-size:0.8rem; display:block; opacity:0.8;">Bundle Price</span>
+                <span class="pdp-bundle-total-price" id="bundle-total-price">₹12,577.45 <span>₹14,797.00</span></span>
+              </div>
+              <button class="btn btn-primary" id="pdp-bundle-add-btn" style="padding: 0.8rem 1.8rem;">
+                <span>Add Bundle</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky PDP Add to Cart Bar -->
+  <div class="pdp-sticky-bar" id="pdp-sticky-bar">
+    <div class="container sticky-bar-container">
+      <div class="sticky-bar-product">
+        <img src="assets/images/product_briefs.png" class="sticky-bar-img" id="sticky-bar-image" alt="Product brief">
+        <div>
+          <h4 class="sticky-bar-title" id="sticky-bar-title">The Signature Boxer Brief</h4>
+          <span class="sticky-bar-price" id="sticky-bar-price">₹3,999.00</span>
+        </div>
+      </div>
+      <div class="sticky-bar-actions">
+        <button class="btn btn-primary" id="sticky-add-btn" style="padding: 0.8rem 2rem;">
+          <span>Add to Cart</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fit Guide Modal -->
+  <div class="fit-guide-modal" id="fit-guide-modal">
+    <div class="fit-guide-content">
+      <button class="fit-guide-close" id="fit-guide-close">&times;</button>
+      <h2 class="fit-guide-title">Sizing & Fit Guide</h2>
+      <div class="fit-guide-tabs">
+        <button class="fit-guide-tab active" data-target="men-size">Men's Size</button>
+        <button class="fit-guide-tab" data-target="women-size">Women's Lingerie</button>
+      </div>
+      
+      <!-- Men's sizes table -->
+      <table class="fit-guide-table" id="men-size">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Waist (Inches)</th>
+            <th>Waist (cm)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td>26 - 28</td><td>66 - 71</td></tr>
+          <tr><td>S</td><td>28 - 30</td><td>71 - 76</td></tr>
+          <tr><td>M</td><td>32 - 34</td><td>81 - 86</td></tr>
+          <tr><td>L</td><td>36 - 38</td><td>91 - 97</td></tr>
+          <tr><td>XL</td><td>40 - 42</td><td>101 - 107</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Women's sizes table -->
+      <table class="fit-guide-table" id="women-size" style="display:none;">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Bust (Inches)</th>
+            <th>Hips (Inches)</th>
+            <th>Equivalent US Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td>30 - 32</td><td>33 - 35</td><td>0 - 2</td></tr>
+          <tr><td>S</td><td>32 - 34</td><td>35 - 37</td><td>4 - 6</td></tr>
+          <tr><td>M</td><td>34 - 36</td><td>37 - 39</td><td>8 - 10</td></tr>
+          <tr><td>L</td><td>36 - 38</td><td>39 - 41</td><td>12 - 14</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BRAND STATEMENT SECTION WITH SHINING TEXT -->
+  <section class="brand-statement-section">
+    <div class="container">
+      <div class="brand-statement-content">
+        <div class="brand-statement-logo reveal-fade-up">
+          <svg class="brand-statement-logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" stroke="#C8AD7C" stroke-width="2"/>
+            <line x1="50" y1="30" x2="50" y2="70" stroke="#C8AD7C" stroke-width="2"/>
+            <circle cx="50" cy="27" r="3" fill="#C8AD7C"/>
+            <ellipse cx="37" cy="38" rx="14" ry="5" transform="rotate(-10 37 38)" stroke="#C8AD7C" stroke-width="2"/>
+            <ellipse cx="63" cy="38" rx="14" ry="5" transform="rotate(10 63 38)" stroke="#C8AD7C" stroke-width="2"/>
+            <ellipse cx="38" cy="48" rx="11" ry="4" transform="rotate(5 38 48)" stroke="#C8AD7C" stroke-width="2"/>
+            <ellipse cx="62" cy="48" rx="11" ry="4" transform="rotate(-5 62 48)" stroke="#C8AD7C" stroke-width="2"/>
+          </svg>
+          <span class="brand-statement-logo-text">REVORA</span>
+        </div>
+        <h2 class="brand-statement-text shine-text reveal-scale">Let’s #KeepMoving</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <svg class="footer-logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" stroke="#C8AD7C" stroke-width="2"/>
+              <line x1="50" y1="30" x2="50" y2="70" stroke="#C8AD7C" stroke-width="2"/>
+              <circle cx="50" cy="27" r="3" fill="#C8AD7C"/>
+              <ellipse cx="37" cy="38" rx="14" ry="5" transform="rotate(-10 37 38)" stroke="#C8AD7C" stroke-width="2"/>
+              <ellipse cx="63" cy="38" rx="14" ry="5" transform="rotate(10 63 38)" stroke="#C8AD7C" stroke-width="2"/>
+              <ellipse cx="38" cy="48" rx="11" ry="4" transform="rotate(5 38 48)" stroke="#C8AD7C" stroke-width="2"/>
+              <ellipse cx="62" cy="48" rx="11" ry="4" transform="rotate(-5 62 48)" stroke="#C8AD7C" stroke-width="2"/>
+            </svg>
+            <span class="footer-logo-text">REVORA</span>
+          </div>
+          <p class="footer-brand-descr">
+            A premium fashion house delivering sensuality, ultimate comfort, and clean minimalist design directly to your wardrobe drawer. 
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link" aria-label="Facebook">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Instagram">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM20 7.37a1 1 0 11-2 0 1 1 0 012 0zM12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Twitter">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Collections -->
+        <div>
+          <h4 class="footer-col-title">Collections</h4>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#best-sellers">The Men's Line</a></li>
+            <li class="footer-link"><a href="#best-sellers">Lingerie & Lace</a></li>
+            <li class="footer-link"><a href="#best-sellers">Signature Silk Slips</a></li>
+            <li class="footer-link"><a href="#best-sellers">Luxury Packaging</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care -->
+        <div>
+          <h4 class="footer-col-title">Support</h4>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#faq">Sizing Guide</a></li>
+            <li class="footer-link"><a href="#faq">Resizing Policy</a></li>
+            <li class="footer-link"><a href="#faq">Care Instructions</a></li>
+            <li class="footer-link"><a href="#faq">Track Order</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact info -->
+        <div>
+          <h4 class="footer-col-title">Maison Revora</h4>
+          <div class="footer-contact-item">
+            <span>Customer Relations</span>
+            support@revora.com<br>
+            +1 (800) 555-REVORA
+          </div>
+          <div class="footer-contact-item">
+            <span>Showroom Address</span>
+            720 Fifth Avenue, Floor 18<br>
+            New York, NY 10019
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 REVORA. All Rights Reserved.
+        </div>
+        <div class="footer-payment-methods">
+          <svg class="footer-payment-icon" viewBox="0 0 38 24" width="38" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="38" height="24" rx="2" fill="#2A1C17"/>
+            <path d="M12 12c0-1.8 1.4-3.2 3.2-3.2s3.2 1.4 3.2 3.2-1.4 3.2-3.2 3.2-3.2-1.4-3.2-3.2z" fill="#C8AD7C"/>
+            <path d="M19.8 12c0-1.8 1.4-3.2 3.2-3.2s3.2 1.4 3.2 3.2-1.4 3.2-3.2 3.2-3.2-1.4-3.2-3.2z" fill="#F2E8D6" fill-opacity="0.8"/>
+            <path d="M18.5 12c.4-.8.4-1.6 0-2.4-.4.8-.4 1.6 0 2.4z" fill="#A68B59"/>
+          </svg>
+          <svg class="footer-payment-icon" viewBox="0 0 38 24" width="38" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="38" height="24" rx="2" fill="#2A1C17"/>
+            <path d="M25 7l-2 10h-2.5L22.2 7H25zm-6.2.1L16.2 15l-1.3-6.5C14.8 7.5 14 7.1 13 7.1V7h4.8l1 4.5 1.5-4.4h2.5z" fill="#C8AD7C"/>
+          </svg>
+          <svg class="footer-payment-icon" viewBox="0 0 38 24" width="38" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="38" height="24" rx="2" fill="#2A1C17"/>
+            <path d="M10 7h4v10h-4V7zm6 3h8v2.5h-8V10zm0 4.5h8V17h-8v-2.5z" fill="#F2E8D6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Javascript -->
+  <script src="app.js"></script>
+  <!-- Three.js experience loader -->
+  <script src="three-experience.js"></script>
+</body>
+</html>

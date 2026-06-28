@@ -1,0 +1,114 @@
+{%- comment -%}
+Testimonial Slider Section
+{%- endcomment -%}
+
+<section class="reviews-section" id="reviews" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section-title-wrap text-center">
+      <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <!-- Review Grid / Slider -->
+    <div class="reviews-grid" id="reviews-slider">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'review' -%}
+          <div class="review-card glass-card-effect" {{ block.shopify_attributes }}>
+            <div class="review-stars">
+              {%- assign stars = block.settings.rating -%}
+              {%- for i in (1..5) -%}
+                <span class="star {% if i <= stars %}active{% endif %}">&#9733;</span>
+              {%- endfor -%}
+            </div>
+            
+            <p class="review-content">"{{ block.settings.content }}"</p>
+            
+            <div class="review-author">
+              <span class="author-name">{{ block.settings.author }}</span>
+              {%- if block.settings.purchased_product_label != blank -%}
+                <span class="purchased-badge">Verified Buyer: {{ block.settings.purchased_product_label }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "Testimonials"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "Loved by Women Globally"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Customer Quote",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Quote Text",
+          "default": "The absolute most comfortable bra I have ever worn. It literally feels like wearing nothing while providing a gorgeous, natural lifting contour shape."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Customer Name",
+          "default": "Aishwarya R."
+        },
+        {
+          "type": "text",
+          "id": "purchased_product_label",
+          "label": "Purchased Item Tag",
+          "default": "Atelier Silk Bra"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Reviews",
+      "category": "Social Proof",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "author": "Anjali S.",
+            "purchased_product_label": "Satin Comfort Bralette"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Meera K.",
+            "purchased_product_label": "French Lace Comfort Set"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

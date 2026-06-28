@@ -1,0 +1,26 @@
+{
+  "current": {
+    "sections": {},
+    "preset": "Default",
+    "enable_custom_cursor": true,
+    "color_bg": "#F2E8D6",
+    "color_primary": "#4A342B",
+    "color_accent": "#C8AD7C",
+    "color_white": "#FFFFFF",
+    "color_card_bg": "rgba(255, 255, 255, 0.45)",
+    "color_border": "rgba(200, 173, 124, 0.25)",
+    "social_instagram_link": "https://instagram.com/revora"
+  },
+  "presets": {
+    "Default": {
+      "enable_custom_cursor": true,
+      "color_bg": "#F2E8D6",
+      "color_primary": "#4A342B",
+      "color_accent": "#C8AD7C",
+      "color_white": "#FFFFFF",
+      "color_card_bg": "rgba(255, 255, 255, 0.45)",
+      "color_border": "rgba(200, 173, 124, 0.25)",
+      "social_instagram_link": "https://instagram.com/revora"
+    }
+  }
+}

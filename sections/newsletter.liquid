@@ -1,0 +1,89 @@
+{%- comment -%}
+Premium Newsletter Atelier Form Section
+{%- endcomment -%}
+
+<section class="newsletter-section" id="newsletter" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="newsletter-card glass-card-effect text-center">
+      <div class="section-title-wrap text-center">
+        <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+        <h2 class="section-title">{{ section.settings.title }}</h2>
+      </div>
+      
+      <p class="newsletter-desc">{{ section.settings.description }}</p>
+
+      {%- form 'customer', class: 'newsletter-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form-group">
+          <input type="email" 
+                 name="contact[email]" 
+                 class="newsletter-input" 
+                 placeholder="{{ section.settings.placeholder }}" 
+                 required
+                 aria-label="Email address"
+                 value="{{ form.email }}">
+          
+          <button type="submit" class="newsletter-btn" name="commit">
+            {{ section.settings.button_label }}
+          </button>
+        </div>
+
+        {%- if form.posted_successfully? -%}
+          <p class="newsletter-success">{{ section.settings.success_message }}</p>
+        {%- elsif form.errors -%}
+          <p class="newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Atelier Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "Join The Atelier"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "EXCLUSIVE PRIVILEGES"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Form Description",
+      "default": "Subscribe to receive private invitations to seasonal collections, couture design journals, and atelier events."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email Input Placeholder",
+      "default": "Enter your email address..."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Welcome to the Revora Atelier circle."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Atelier Newsletter",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}

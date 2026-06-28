@@ -1,0 +1,96 @@
+{%- comment -%}
+Instagram Grid Gallery Section
+{%- endcomment -%}
+
+<section class="instagram-section" id="instagram" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section-title-wrap text-center">
+      <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="instagram-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'instagram_post' -%}
+          <a href="{{ block.settings.link | default: '#' }}" class="instagram-item" {{ block.shopify_attributes }}>
+            <div class="instagram-image-container">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 450 }}" 
+                     alt="Instagram post by Revora" 
+                     class="instagram-img">
+              {%- else -%}
+                <div style="background-color: var(--caramel); opacity: 0.15; height: 250px; width: 100%;"></div>
+              {%- endif -%}
+              <!-- Hover Icon overlay -->
+              <div class="instagram-overlay">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+            </div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "Moments in Silk"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "STYLING BY ATELIER"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "instagram_post",
+      "name": "Instagram Post",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Post Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Post URL Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Feed Grid",
+      "category": "Social Proof",
+      "blocks": [
+        {
+          "type": "instagram_post"
+        },
+        {
+          "type": "instagram_post"
+        },
+        {
+          "type": "instagram_post"
+        },
+        {
+          "type": "instagram_post"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

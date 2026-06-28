@@ -1,0 +1,77 @@
+{%- comment -%}
+Reusable Product Card Snippet (Dynamic Shopify product)
+{%- endcomment -%}
+
+{%- assign featured_variant = product.selected_or_first_available_variant -%}
+
+<div class="product-card" data-product-id="{{ product.id }}">
+  <div class="product-image-container">
+    <a href="{{ product.url }}" class="product-link">
+      <img src="{{ product.featured_image | image_url: width: 600 }}" 
+           alt="{{ product.title }}" 
+           class="product-image primary-img"
+           loading="lazy">
+      {%- if product.images[1] != blank -%}
+        <img src="{{ product.images[1] | image_url: width: 600 }}" 
+             alt="{{ product.title }}" 
+             class="product-image hover-img"
+             loading="lazy">
+      {%- endif -%}
+    </a>
+  </div>
+
+  <div class="product-details">
+    <!-- Reviews Star Badge -->
+    <div class="product-rating">
+      <span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="rating-count">(4.9)</span>
+    </div>
+
+    <!-- Product Title -->
+    <h3 class="product-title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    <!-- Dynamic Color Swatches beneath title -->
+    {%- for option in product.options_with_values -%}
+      {%- if option.name == 'Color' or option.name == 'Colour' -%}
+        <div class="product-color-swatches">
+          {%- for value in option.values -%}
+            <button class="color-swatch {% if forloop.first %}active{% endif %}" 
+                    data-value="{{ value }}"
+                    style="background-color: {{ value | downcase }};"
+                    aria-label="Color Swatch {{ value }}">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%-}
+    {%- endfor -%}
+
+    <!-- Pricing Row -->
+    <div class="product-price-row">
+      <span class="product-price">{{ featured_variant.price | money }}</span>
+      {%- if featured_variant.compare_at_price > featured_variant.price -%}
+        <span class="product-compare-price">{{ featured_variant.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+
+    <!-- Dynamic Quick Add button aligned at card bottom -->
+    <div class="product-atc-wrap">
+      {%- form 'product', product, class: 'quick-add-form' -%}
+        <input type="hidden" name="id" value="{{ featured_variant.id }}">
+        <button type="submit" 
+                class="luxury-btn btn-secondary quick-add-btn" 
+                {% unless featured_variant.available %}disabled{% endunless %}>
+          <span class="btn-text">
+            {%- if featured_variant.available -%}
+              Quick Add
+            {%- else -%}
+              Sold Out
+            {%- endif -%}
+          </span>
+          <span class="btn-hover-effect"></span>
+        </button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+{%- comment -%}
+Frequently Asked Questions Section
+{%- endcomment -%}
+
+<section class="faq-section" id="faq" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section-title-wrap text-center">
+      <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="faq-grid">
+      <div class="luxury-accordion-wrap faq-accordion-container">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'faq_item' -%}
+            <div class="accordion-item" {{ block.shopify_attributes }}>
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-header-text">{{ block.settings.question }}</span>
+                <span class="accordion-icon">
+                  <span class="line-v"></span>
+                  <span class="line-h"></span>
+                </span>
+              </button>
+              <div class="accordion-collapse" style="max-height: 0px;">
+                <div class="accordion-body">
+                  <p>{{ block.settings.answer }}</p>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "Atelier Assistance"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How should I wash my silk bra?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "We recommend hand washing in cold water using a mild pH-neutral detergent to preserve silk fibers elasticity. Lay flat to dry out of direct sunlight."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "category": "Customer Support",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the return policy?",
+            "answer": "We offer complimentary returns and exchanges on all unworn items in their original packaging within 30 days of delivery. For hygiene reasons, briefs cannot be returned once opened."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I choose the correct sizing?",
+            "answer": "Please consult our sensory size guide overlay on the product page. If you are between sizes, we recommend sizing up for wire-free styles."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

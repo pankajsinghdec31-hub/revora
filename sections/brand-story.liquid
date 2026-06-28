@@ -1,0 +1,94 @@
+{%- comment -%}
+Brand Storytelling Parallax Section
+{%- endcomment -%}
+
+<section class="brand-story-section" id="brand-story" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="brand-story-grid">
+      <!-- Media Columns -->
+      <div class="story-media-column">
+        <div class="story-image-wrap img-left">
+          {%- if section.settings.image_left != blank -%}
+            <img src="{{ section.settings.image_left | image_url: width: 800 }}" 
+                 alt="Revora Heritage" 
+                 class="story-img parallax-img-target">
+          {%- else -%}
+            <div style="background-color: var(--caramel); opacity: 0.15; height: 400px; width: 100%;"></div>
+          {%- endif -%}
+        </div>
+        <div class="story-image-wrap img-right">
+          {%- if section.settings.image_right != blank -%}
+            <img src="{{ section.settings.image_right | image_url: width: 600 }}" 
+                 alt="Revora Craft" 
+                 class="story-img parallax-img-target">
+          {%- else -%}
+            <div style="background-color: var(--caramel); opacity: 0.25; height: 300px; width: 100%;"></div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Narrative Column -->
+      <div class="story-narrative-column">
+        <div class="narrative-inner">
+          <span class="narrative-tag">{{ section.settings.subtitle }}</span>
+          <h3 class="narrative-heading">{{ section.settings.heading }}</h3>
+          <div class="narrative-body">{{ section.settings.content }}</div>
+          
+          {%- if section.settings.signature_text != blank -%}
+            <div class="story-signature">
+              <span class="cursive-sig">{{ section.settings.signature_text }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Storytelling",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Heritage Subtitle",
+      "default": "WEAVING A LEGACY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Story Title",
+      "default": "Hand-Tailored Lingerie Made to Breath"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Story Paragraphs",
+      "default": "<p>Born from a desire to reconcile the sensory aesthetics of luxury lace with everyday utility, Revora crafts undergarments that feel like silk water against the skin.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Large Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Small Right Overlap Image"
+    },
+    {
+      "type": "text",
+      "id": "signature_text",
+      "label": "Atelier Signature Signature Text",
+      "default": "Atelier Revora"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Storytelling",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

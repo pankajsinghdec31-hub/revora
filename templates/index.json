@@ -1,0 +1,87 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "title": "SENSORY LUXURY",
+        "subtitle": "Second-Skin Comfort. Handcrafted Elegance.",
+        "cta_label": "Explore The Collection",
+        "cta_link": "/collections/all"
+      }
+    },
+    "best-sellers": {
+      "type": "best-sellers",
+      "settings": {
+        "title": "The Best Sellers",
+        "subtitle": "Most coveted signature styles",
+        "max_products": 6
+      }
+    },
+    "values": {
+      "type": "values",
+      "settings": {
+        "title": "Our Craftsmanship Pillars"
+      }
+    },
+    "fabric-tech": {
+      "type": "fabric-tech",
+      "settings": {
+        "title": "Pure Tech Comfort",
+        "subtitle": "Engineered for the feminine form"
+      }
+    },
+    "collections": {
+      "type": "collections",
+      "settings": {
+        "title": "Curated Collections"
+      }
+    },
+    "editorial": {
+      "type": "editorial",
+      "settings": {
+        "title": "Couture Design Notes"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "settings": {
+        "title": "TESTIMONIALS"
+      }
+    },
+    "brand-story": {
+      "type": "brand-story",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "title": "Frequently Asked Questions"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Join The Atelier"
+      }
+    },
+    "instagram-feed": {
+      "type": "instagram-feed",
+      "settings": {
+        "title": "Shared Moments"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "best-sellers",
+    "values",
+    "fabric-tech",
+    "collections",
+    "editorial",
+    "reviews",
+    "brand-story",
+    "faq",
+    "newsletter",
+    "instagram-feed"
+  ]
+}

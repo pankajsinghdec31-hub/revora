@@ -1,0 +1,162 @@
+{%- comment -%}
+Hanging Glassmorphic Header Section
+{%- endcomment -%}
+
+<header class="hanging-header-container" data-section-id="{{ section.id }}" data-section-type="header">
+  {%- if section.settings.show_announcement -%}
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcement-bar">
+      <div class="announcement-slider">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'announcement' -%}
+            <div class="announcement-item {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="header-inner">
+    <div class="container-fluid">
+      <div class="header-wrap">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation Left Column -->
+        <nav class="desktop-nav nav-left">
+          {%- for link in linklists[section.settings.menu_left].links -%}
+            <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+          {%- endfor -%}
+        </nav>
+
+        <!-- Centered Logo -->
+        <div class="logo-wrap">
+          <a href="/" class="logo-link">
+            {%- if section.settings.logo != blank -%}
+              <img src="{{ section.settings.logo | image_url: width: 300 }}" 
+                   alt="{{ shop.name }}" 
+                   style="max-width: {{ section.settings.logo_width }}px;"
+                   class="logo-image">
+            {%- else -%}
+              <span class="logo-text">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+        </div>
+
+        <!-- Navigation Right Column -->
+        <nav class="desktop-nav nav-right">
+          {%- for link in linklists[section.settings.menu_right].links -%}
+            <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+          {%- endfor -%}
+        </nav>
+
+        <!-- Utility Icons (Search, Cart Drawer Link) -->
+        <div class="header-utilities">
+          <button class="util-btn search-trigger" id="search-trigger" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          
+          <a href="/account" class="util-btn account-link" aria-label="Account">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </a>
+
+          <button class="util-btn cart-trigger" id="cart-trigger" aria-label="Open Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-count-badge" id="cart-badge">{{ cart.item_count }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer Overlay -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Navigation</span>
+      <button class="drawer-close" id="drawer-close" aria-label="Close Menu">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <nav class="mobile-links">
+        {%- assign full_menu = linklists[section.settings.menu_left].links | concat: linklists[section.settings.menu_right].links -%}
+        {%- for link in full_menu -%}
+          <a href="{{ link.url }}" class="mobile-link">{{ link.title }}</a>
+        {%- endfor -%}
+      </nav>
+    </div>
+  </div>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+</header>
+
+{% schema %}
+{
+  "name": "Navigation Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo Max Width",
+      "default": 130
+    },
+    {
+      "type": "link_list",
+      "id": "menu_left",
+      "label": "Left Navigation Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_right",
+      "label": "Right Navigation Menu"
+    },
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show Announcement Bar",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Announcement Text",
+          "default": "Free Express Shipping on Orders Over ₹12,500"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

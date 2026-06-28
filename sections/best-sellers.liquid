@@ -1,0 +1,95 @@
+{%- comment -%}
+Best Sellers Section with Products Carousel
+{%- endcomment -%}
+
+{%- assign collection = collections[section.settings.collection] -%}
+
+<section class="best-sellers-section" id="best-sellers" data-section-id="{{ section.id }}">
+  <div class="container-fluid">
+    <div class="section-title-wrap text-center">
+      <span class="section-subtitle">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <!-- Product Slider Viewport -->
+    <div class="products-carousel-viewport" id="products-carousel-viewport">
+      <!-- Grid mode gets carousel wrapper styles in JS when count > 4 -->
+      <div class="products-grid {% if collection.all_products_count > 4 or section.settings.max_products > 4 %}carousel-mode{% endif %}" id="products-grid">
+        {%- if collection != blank and collection.all_products_count > 0 -%}
+          {%- for product in collection.products limit: section.settings.max_products -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Mock Cards if collection not selected yet -->
+          {%- for i in (1..6) -%}
+            <div class="product-card">
+              <div class="product-image-container">
+                <div style="background-color: var(--caramel); opacity: 0.15; height: 350px;"></div>
+              </div>
+              <div class="product-details">
+                <h3 class="product-title">Atelier Silk Bralette {{ i }}</h3>
+                <div class="product-price">₹4,200</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Test/Carousel Controls -->
+    <div class="carousel-controls" id="carousel-controls">
+      <button class="carousel-control-btn prev" id="carousel-prev" aria-label="Previous Products">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <button class="carousel-control-btn next" id="carousel-next" aria-label="Next Products">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dynamic Best Sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Text",
+      "default": "The Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Description",
+      "default": "Most coveted signature styles"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Max Products Displayed",
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Best Sellers",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

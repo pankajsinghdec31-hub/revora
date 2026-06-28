@@ -1,0 +1,212 @@
+{%- comment -%}
+Main Product Page Block Layout (Shopify OS 2.0)
+{%- endcomment -%}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="pdp-section main-product" data-section-id="{{ section.id }}" data-section-type="product">
+  <div class="container">
+    <div class="pdp-grid">
+      <!-- Media Left Column -->
+      <div class="pdp-media-col">
+        <div class="product-gallery-viewport">
+          {%- if product.featured_image != blank -%}
+            <div class="pdp-main-image-wrap">
+              <img src="{{ product.featured_image | image_url: width: 1000 }}" 
+                   alt="{{ product.title }}" 
+                   id="pdp-main-img"
+                   class="pdp-main-image">
+            </div>
+            
+            <!-- Thumbnail Carousel -->
+            <div class="pdp-thumbnails">
+              {%- for image in product.images -%}
+                <button class="thumbnail-btn {% if forloop.first %}active{% endif %}" data-src="{{ image | image_url: width: 1000 }}">
+                  <img src="{{ image | image_url: width: 150 }}" alt="thumbnail">
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <!-- Fallback Mock visual -->
+            <div style="background-color: var(--caramel); opacity: 0.15; height: 500px; width: 100%; border-radius: 8px;"></div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Settings Right Column -->
+      <div class="pdp-details-col">
+        <div class="product-info-wrap">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {%- render block -%}
+                
+              {%- when 'title' -%}
+                <div class="product-title-wrap" {{ block.shopify_attributes }}>
+                  {%- if section.settings.show_vendor -%}
+                    <span class="product-vendor">{{ product.vendor }}</span>
+                  {%- endif -%}
+                  <h1 class="pdp-title">{{ product.title | default: "Atelier Silk Comfort Bralette" }}</h1>
+                </div>
+
+              {%- when 'price' -%}
+                <div class="pdp-price-wrap" {{ block.shopify_attributes }}>
+                  <span class="pdp-price" id="pdp-price">{{ current_variant.price | default: 420000 | money }}</span>
+                  {%- if current_variant.compare_at_price > current_variant.price -%}
+                    <span class="pdp-price-compare" id="pdp-compare-price">{{ current_variant.compare_at_price | money }}</span>
+                  {%- endif -%}
+                </div>
+
+              {%- when 'variant_picker' -%}
+                <div class="pdp-variants-wrap" {{ block.shopify_attributes }}>
+                  <!-- Form with Swatches/Dropdowns -->
+                  {%- unless product.has_only_default_variant -%}
+                    {%- for option in product.options_with_values -%}
+                      <div class="variant-selector-option">
+                        <label class="variant-option-label">{{ option.name }}</label>
+                        {%- if option.name == 'Color' or option.name == 'Colour' -%}
+                          <!-- Mini color circle swatches -->
+                          <div class="color-swatches-grid">
+                            {%- for value in option.values -%}
+                              <button class="color-swatch-circle {% if option.selected_value == value %}active{% endif %}" 
+                                      data-value="{{ value }}"
+                                      aria-label="{{ value }}">
+                                <span class="color-swatch-inner" style="background-color: {{ value | downcase }};"></span>
+                              </button>
+                            {%- endfor -%}
+                          </div>
+                        {%- else -%}
+                          <!-- Standard size buttons -->
+                          <div class="size-swatches-grid">
+                            {%- for value in option.values -%}
+                              <button class="size-swatch-box {% if option.selected_value == value %}active{% endif %}" data-value="{{ value }}">
+                                {{ value }}
+                              </button>
+                            {%- endfor -%}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    {%- endfor -%}
+                  {%- endunless -%}
+                </div>
+
+              {%- when 'buy_buttons' -%}
+                <div class="pdp-actions-wrap" {{ block.shopify_attributes }}>
+                  {%- form 'product', product, id: 'product-form-pdp' -%}
+                    <input type="hidden" name="id" value="{{ current_variant.id }}" id="product-variant-id">
+                    
+                    <div class="qty-and-cart-wrap">
+                      <div class="quantity-input-wrap">
+                        <button type="button" class="qty-btn minus">&minus;</button>
+                        <input type="number" name="quantity" class="qty-field" value="1" min="1">
+                        <button type="button" class="qty-btn plus">&plus;</button>
+                      </div>
+                      
+                      <button type="submit" 
+                              name="add" 
+                              class="luxury-btn btn-primary add-to-cart-pdp"
+                              {% unless current_variant.available %}disabled{% endunless %}>
+                        <span class="btn-text">
+                          {%- if current_variant.available -%}
+                            Add To Cart
+                          {%- else -%}
+                            Sold Out
+                          {%- endif -%}
+                        </span>
+                        <span class="btn-hover-effect"></span>
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </div>
+
+              {%- when 'description' -%}
+                <div class="pdp-description-wrap" {{ block.shopify_attributes }}>
+                  <div class="pdp-description-content">
+                    {{ product.description | default: "<p>Stitched by master artisans using premium 100% natural Mulberry silk filaments to lay flat against sensitive skin regions. High support elastic straps ensure contouring mapping comfort.</p>" }}
+                  </div>
+                </div>
+
+              {%- when 'collapsible_tab' -%}
+                <div class="pdp-collapsible-tab" {{ block.shopify_attributes }}>
+                  <div class="accordion-item">
+                    <button class="accordion-header">
+                      <span class="accordion-header-text">{{ block.settings.heading }}</span>
+                      <span class="accordion-icon"><span class="line-v"></span><span class="line-h"></span></span>
+                    </button>
+                    <div class="accordion-collapse" style="max-height: 0px;">
+                      <div class="accordion-body">
+                        <p>{{ block.settings.content }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Layout Details",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show Brand Vendor Name",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "Title Header",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Pricing Field",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant Swatches Picker",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Add-to-Cart Buttons",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description Field",
+      "limit": 1
+    },
+    {
+      "type": "collapsible_tab",
+      "name": "Collapsible Accordions Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Accordion Title",
+          "default": "Sizing & Fit Advice"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Accordion Body Details",
+          "default": "We recommend sizing up if you are in between cups. Fabric holds a flat profile against skin sensitive regions."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
