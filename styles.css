@@ -3789,7 +3789,7 @@ footer {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   border-radius: 30px; /* Oval pill */
-  display: flex;
+  display: none; /* Hidden on desktop */
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -4449,6 +4449,10 @@ footer {
 
 /* Screens under 768px (Mobile & Small Breakpoints) */
 @media (max-width: 768px) {
+  .pdp-buy-now-solid {
+    display: flex !important;
+  }
+
   .pdp-title {
     font-size: 2.2rem;
   }
